@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - TradeWave</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <base href="/"/>
+</head>
+<body style="background-color: #d9e0ed">
+<header class="navbar-no-shadow">
+    <div class="container-regular">
+        <div class="navbar-wrapper">
+            <a class="navbar-brand" href="#">
+                <h1 class="white-heading">TradeWave</h1>
+            </a>
+            <nav role="navigation" class="nav-menu-wrapper w-nav-menu">
+                <ul role="list" class="nav-menu w-list-unstyled">
+                    @await RenderSectionAsync(name: "AdditionalMenuButtons")
+                    <li class="mobile-margin-top-11">
+                        <div class="nav-button-wrapper">
+                            <a class="nav-link" href="#">Sign up</a>
+                            <a class="button-primary" href="#">Log in</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="menu-button w-nav-button">
+                <div class="w-icon-nav-menu"></div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="divider"></section>
+
+@RenderBody();
+
+@* <section class="divider"></section> *@
+
+<footer class="footer-dark">
+    <div class="container">
+        <div class="footer-wrapper">
+            <a href="#" class="footer-brand w-inline-block w-clearfix">
+                <h3 class="white-heading">TradeWave</h3>
+            </a>
+            <div class="footer-content">
+                <div id="w-node-_67efb1ed-8059-4e57-7371-ad9557e7f911-4aaec852" class="footer-block">
+                    <div class="title-small">Company</div>
+                    <a href="#" class="footer-link">How it works</a>
+                    <a href="#" class="footer-link">Pricing</a>
+                    <a href="#" class="footer-link">Docs</a>
+                </div>
+                <div id="w-node-_67efb1ed-8059-4e57-7371-ad9557e7f91a-4aaec852" class="footer-block">
+                    <div class="title-small">Resources</div>
+                    <a href="#" class="footer-link">Blog post name list goes here</a>
+                    <a href="#" class="footer-link">Blog post name list goes here</a>
+                    <a href="#" class="footer-link">Blog post name list goes here</a>
+                    <a href="#" class="footer-link">See all resources &gt;</a>
+                </div>
+                <div id="w-node-_67efb1ed-8059-4e57-7371-ad9557e7f925-4aaec852" class="footer-block">
+                    <div class="title-small">About</div>
+                    <a href="#" class="footer-link">Terms &amp; Conditions</a>
+                    <a href="#" class="footer-link">Privacy policy</a>
+                    <div class="footer-social-block">
+                        <a href="#" class="footer-social-link w-inline-block">
+                            <img src=""/>
+                        </a>
+                        <a href="#" class="footer-social-link w-inline-block">
+                            <img src=""/>
+                        </a>
+                        <a href="#" class="footer-social-link w-inline-block">
+                            <img src=""/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-copyright-center">Copyright © 2024 GDG TradeWave</div>
+</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="pgia/lib/pgia.js"></script>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

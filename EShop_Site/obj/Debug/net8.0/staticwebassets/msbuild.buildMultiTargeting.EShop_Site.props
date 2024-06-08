@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\EShop_Site.props" />
+</Project>
