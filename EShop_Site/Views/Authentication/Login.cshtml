@@ -1,4 +1,6 @@
-﻿@{
+﻿@model SharedLibrary.Requests.LoginRequest
+
+@{
     ViewData["Title"] = "Login";
 }
 
@@ -10,31 +12,22 @@
 <main class="container-size container-main">
     <div class="login-container">
         <div class="login-box">
-            <h3 class="white-heading">Login</h3>
-            <form asp-action="Login" method="post">
+            <h3 class="white-heading">Authenticate</h3>
+            <form asp-action="Login" asp-controller="Authentication" method="post">
                 <div class="form-group">
-                    <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="form-control"/>
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email"/>
+                    <span asp-validation-for="Email"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="form-control"/>
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" type="password"/>
+                    <span asp-validation-for="Password"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Login" class="btn btn-primary"/>
+                    <a type="submit" class="button-type-1">Login</a>
                 </div>
             </form>
-            @if (!ViewData.ModelState.IsValid)
-            {
-                <div class="alert alert-danger">
-                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-                    {
-                        <p>@error.ErrorMessage</p>
-                    }
-                </div>
-            }
         </div>
     </div>
 </main>

@@ -6,41 +6,51 @@
     justify-content: center;
 }
 
+div {
+    --window-blue: #233350;
+    --window-red: #d57070;
+}
+
 .login-box {
     /* background-color: rgba(255, 255, 255, 0.1); */
-    background-color: #233350;
+    background-color: var(--window-blue);
     padding: 20px;
     margin: 100px 0 100px 0;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     text-align: center;
     font-family: Noto Sans Brahmi, sans-serif;
-    font-size: 24px;
+    width: 30em
 }
 
-.login-box h2 {
-    font-family: Noto Sans Brahmi, sans-serif;
-    font-size: 24px;
-}
-
-.input-group {
+.form-group {
     margin-bottom: 15px;
-    text-align: left;
-    color: #f5f7fa;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: var(--white);
 }
 
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-family: Noto Sans Brahmi, sans-serif;
-    font-size: 16px;
+.form-group label {
+    font-size: large;
+    font-family: 'Noto Sans Brahmi', sans-serif;
+    margin-bottom: 0.3em;
 }
 
-.input-group input {
+.form-group input {
     width: 100%;
     padding: 10px;
     border: none;
     border-radius: 4px;
     font-family: Noto Sans Brahmi, sans-serif;
     font-size: 16px;
+}
+
+.form-group span {
+    display: block;
+    margin-bottom: 5px;
+    font-family: Noto Sans Brahmi, sans-serif;
+    color: var(--window-red);
+    font-size: medium;
+    margin-top: 0.2em;
 }

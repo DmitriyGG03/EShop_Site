@@ -15,6 +15,7 @@ public class AuthenticationController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly IHttpClientService _httpClient;
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private const string _controllerUrl = "auth/";
 
     public AuthenticationController(ILogger<HomeController> logger, IHttpClientService httpClientService,
         IHttpContextAccessor httpContextAccessor)
@@ -34,7 +35,7 @@ public class AuthenticationController : Controller
     {
         if (!ModelState.IsValid) return View();
 
-        var response = await _httpClient.SendRequestAsync(new RestRequestForm(ApiRoutes.Authentication.Login,
+        var response = await _httpClient.SendRequestAsync(new RestRequestForm(_controllerUrl+ApiRoutes.Authentication.Login,
             HttpMethod.Post,
             jsonData: JsonConvert.SerializeObject(loginRequest)));
 

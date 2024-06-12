@@ -9,7 +9,7 @@ namespace EShop_Site.Services;
 public class HttpClientService : IHttpClientService
 {
     private readonly IHttpClientFactory _clientFactory;
-    private const string DbUrl = "https://localhost:44381/";
+    private const string BlUrl = "https://localhost:44301/";
 
     public HttpClientService(IHttpClientFactory clientFactory)
     {
@@ -22,7 +22,7 @@ public class HttpClientService : IHttpClientService
         {
             try
             {
-                var request = new HttpRequestMessage(requestForm.RequestMethod, DbUrl + requestForm.EndPoint);
+                var request = new HttpRequestMessage(requestForm.RequestMethod, BlUrl + requestForm.EndPoint);
 
                 if (requestForm.JsonData != null)
                 {
