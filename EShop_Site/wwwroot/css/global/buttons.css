@@ -1,0 +1,100 @@
+.brand-block {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.heading-brand {
+    color: var(--white);
+    font-family: Noto Sans Brahmi, sans-serif;
+    display: inline-flex;
+    font-size: xx-large;
+    align-self: center;
+}
+
+.nav-link-temp {
+    color: var(--white);
+    font-family: Noto Sans Brahmi, sans-serif;
+    font-size: large;
+    padding: 0.2em 0.5em;
+    cursor: pointer;
+    text-decoration: none;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.nav-link-temp:hover,
+.nav-lang:hover {
+    color: var(--bt-blue);
+}
+
+.nav-link-temp:active,
+.nav-lang:active {
+    color: var(--lightBlue);
+}
+
+.nav-link-temp:focus,
+.nav-lang:focus {
+    outline: 2px solid var(--bt-blue);
+}
+
+.nav-link-temp:visited,
+.nav-lang:visited {
+    color: var(--white);
+}
+
+.nav-lang {
+    display: inline-flex;
+    color: var(--white);
+    font-family: Noto Sans Brahmi, sans-serif;
+    font-size: large;
+    padding: 0.2em 0.5em;
+    cursor: pointer;
+    text-decoration: none;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.button-type-1 {
+    align-self: center;
+    font-size: x-large;
+    color: var(--bt-blue);
+    font-family: Noto Sans Brahmi, sans-serif;
+    border: 4px outset #9cbbcd;
+    padding: 4px 8px 4.5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button-type-1:hover {
+    background-color: var(--blue);
+    color: var(--white);
+    border: 4px outset var(--white);
+}
+
+.button-type-2:hover {
+    background-color: var(--blue);
+    color: var(--white);
+    border: 2px outset var(--white);
+}
+
+.button-type-1:active,
+.button-type-2:active {
+    background-color: var(--darkBlue);
+}
+
+.button-type-2 {
+    align-self: center;
+    font-size: 20px;
+    color: var(--white);
+    font-family: Noto Sans Brahmi, sans-serif;
+    border-style: solid;
+    border-width: 2px;
+    padding: 0.25em;
+    cursor: pointer;
+    text-decoration: none;
+}

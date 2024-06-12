@@ -30,14 +30,6 @@ build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlclxWaWV3c1xTZWxsZXJz
 build_metadata.AdditionalFiles.CssScope = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/Authentication/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = 
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Manager/Views/ManagerHome/About.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlclxWaWV3c1xNYW5hZ2VySG9tZVxBYm91dC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Manager/Views/Products/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlclxWaWV3c1xQcm9kdWN0c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -64,6 +56,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/Authentication/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/Home/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/Home/Error.cshtml]

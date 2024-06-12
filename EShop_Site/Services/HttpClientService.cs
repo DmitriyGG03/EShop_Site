@@ -2,10 +2,11 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using EShop_Site.Components;
+using EShop_Site.Services.Abstract;
 
 namespace EShop_Site.Services;
 
-public class HttpClientService
+public class HttpClientService : IHttpClientService
 {
     private readonly IHttpClientFactory _clientFactory;
     private const string DbUrl = "https://localhost:44381/";

@@ -1,9 +1,10 @@
 using EShop_Site.Services;
+using EShop_Site.Services.Abstract;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpClient("MyApiClient");
-builder.Services.AddTransient<HttpClientService>();
+builder.Services.AddScoped<IHttpClientService, HttpClientService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(i =>
@@ -12,6 +13,7 @@ builder.Services.AddControllersWithViews().AddNewtonsoftJson(i =>
 });
 
 builder.Services.AddRazorPages();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -40,7 +42,7 @@ app.MapAreaControllerRoute(
 //     pattern: "buy/{controller=ManagerHome}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
-    name: "default",
+    name: "default_area",
     pattern: "{controller=Home}/{action=Privacy}/{id?}");
 
 app.MapRazorPages();

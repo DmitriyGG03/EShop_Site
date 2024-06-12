@@ -9,12 +9,60 @@
       "PackagePath": "staticwebassets\\StaticFiles\\CompanyLogo.png"
     },
     {
-      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\site.css",
-      "PackagePath": "staticwebassets\\css\\site.css"
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\cart_icon.png",
+      "PackagePath": "staticwebassets\\StaticFiles\\cart_icon.png"
     },
     {
-      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\favicon.ico",
-      "PackagePath": "staticwebassets\\favicon.ico"
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\heart_icon.png",
+      "PackagePath": "staticwebassets\\StaticFiles\\heart_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\profile_icon.png",
+      "PackagePath": "staticwebassets\\StaticFiles\\profile_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\scale_icon.png",
+      "PackagePath": "staticwebassets\\StaticFiles\\scale_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\search_icon.png",
+      "PackagePath": "staticwebassets\\StaticFiles\\search_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\customer\\customer.css",
+      "PackagePath": "staticwebassets\\css\\customer\\customer.css"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\global\\buttons.css",
+      "PackagePath": "staticwebassets\\css\\global\\buttons.css"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\global\\headings.css",
+      "PackagePath": "staticwebassets\\css\\global\\headings.css"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\global\\site.css",
+      "PackagePath": "staticwebassets\\css\\global\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\main\\authentication.css",
+      "PackagePath": "staticwebassets\\css\\main\\authentication.css"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\main\\footer.css",
+      "PackagePath": "staticwebassets\\css\\main\\footer.css"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\main\\header.css",
+      "PackagePath": "staticwebassets\\css\\main\\header.css"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\manager\\manager.css",
+      "PackagePath": "staticwebassets\\css\\manager\\manager.css"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\uncategorized.css",
+      "PackagePath": "staticwebassets\\css\\uncategorized.css"
     },
     {
       "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\js\\site.js",
@@ -247,6 +295,10 @@
     {
       "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\logo_icon.ico",
+      "PackagePath": "staticwebassets\\logo_icon.ico"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.EShop_Site.Microsoft.AspNetCore.StaticWebAssets.props",

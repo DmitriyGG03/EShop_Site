@@ -1,0 +1,91 @@
+@media (min-width: 1260px) {
+    .navbar-header {
+        background-color: var(--darkBlue);
+        display: flex;
+        justify-content: center;
+        height: 90px;
+    }
+
+    .navbar-panel {
+        max-width: 1260px;
+        width: 100%;
+        display: grid;
+        grid: repeat(2, 1fr)/190px auto 100px 220px;
+    }
+
+    .navbar-flex-line {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: flex-start;
+    }
+
+    .navbar-flex-line-top {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+    }
+
+    .navbar-flex-line-bottom {
+        display: grid;
+        height: 100%;
+        width: 98%;
+        grid: auto/auto 45px 45px 45px 45px;
+        column-gap: 5px;
+    }
+
+    .navbar-input-field {
+        background-color: var(--white);
+        width: 100%;
+        margin-top: 5px;
+        margin-left: 5px;
+        margin-bottom: 5px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        font-family: 'Noto Sans Brahmi', sans-serif;
+        font-size: large;
+        color: black;
+    }
+
+    .navbar-find-button {
+        background-color: var(--white);
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .navbar-bottom-buttons {
+        margin: 5px;
+        background-color: var(--white);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 8px;
+    }
+
+    .navbar-lang {
+        align-content: center;
+        justify-content: center;
+        display: flex;
+    }
+
+    .navbar-auth {
+        display: flex;
+        align-content: center;
+        justify-content: space-evenly;
+    }
+
+    .navbar-lang-help-text {
+        color: var(--white);
+        font-family: 'Noto Sans Brahmi', sans-serif;
+        font-size: large;
+        align-self: center;
+    }
+
+    .header-divider {
+        background-color: var(--white);
+        width: 98%;
+        height: 1px;
+    }
+}

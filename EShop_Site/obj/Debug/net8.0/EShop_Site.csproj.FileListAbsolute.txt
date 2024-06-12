@@ -36,3 +36,5 @@ C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\bin\Debug\net8
 C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\obj\Debug\net8.0\EShop_Site.csproj.AssemblyReference.cache
 C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\obj\Debug\net8.0\EShop_Site.csproj.Up2Date
 C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\obj\Debug\net8.0\scopedcss\Areas\Manager\Views\Shared\_ManagerLayout.cshtml.rz.scp.css
+C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\bin\Debug\net8.0\SharedLibrary.dll
+C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\bin\Debug\net8.0\SharedLibrary.pdb

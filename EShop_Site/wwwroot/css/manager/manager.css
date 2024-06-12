@@ -1,0 +1,23 @@
+.text-block-2 {
+    font-family: Noto Sans Brahmi, sans-serif;
+    color: #f5f7fa;
+    font-size: 24px;
+}
+
+.container-page-grid {
+    display: grid;
+    grid: auto 200px/auto;
+}
+
+.logo-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-text {
+    display: flex;
+    justify-content: center;
+    background-color: #152b40;
+    align-items: flex-start;
+}

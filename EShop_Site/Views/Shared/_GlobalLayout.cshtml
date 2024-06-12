@@ -5,30 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - TradeWave</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/global/headings.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/global/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/main/authentication.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/main/footer.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/main/header.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/uncategorized.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/global/buttons.css" asp-append-version="true"/>
+    <link rel="icon" href="logo_icon.ico" type="image/x-icon">
     <base href="/"/>
 </head>
-<body style="background-color: #d9e0ed">
-<header class="navbar-no-shadow">
-    <div class="container-regular">
-        <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#">
-                <h1 class="white-heading">TradeWave</h1>
-            </a>
-            <nav role="navigation" class="nav-menu-wrapper w-nav-menu">
-                <ul role="list" class="nav-menu w-list-unstyled">
-                    @await RenderSectionAsync(name: "AdditionalMenuButtons")
-                    <li class="mobile-margin-top-11">
-                        <div class="nav-button-wrapper">
-                            <a class="nav-link" href="#">Sign up</a>
-                            <a class="button-primary" href="#">Log in</a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-            <div class="menu-button w-nav-button">
-                <div class="w-icon-nav-menu"></div>
+<body class="body-color">
+<header class="navbar-header">
+    <div class="navbar-panel">
+        <a class="brand-block" style="grid-area: 1 / 1 / 3 / 2;" href="#">
+            <h2 class="heading-brand">TradeWave</h2>
+        </a>
+        <div class="navbar-flex-line" style="grid-area: 1 / 2 / 2 / 3;">
+            <div class="navbar-flex-line-top">
+                <a class="nav-link-temp" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                <a class="nav-link-temp" asp-area="" asp-controller="Home" asp-action="About">Sellers</a>
+                <a class="nav-link-temp" asp-area="" asp-controller="Home" asp-action="About">Products</a>
+                <a class="nav-link-temp" asp-area="" asp-controller="Home" asp-action="About">Orders</a>
+                @await RenderSectionAsync("AdditionalMenuButtons")
             </div>
+            <div class="header-divider"></div>
+        </div>
+        <div style="grid-area: 2 / 2 / 3 / 3;" class="navbar-flex-line">
+            <div class="navbar-flex-line-bottom">
+                <input class="navbar-input-field" placeholder="I want to find..."/>
+                <button class="navbar-find-button">
+                    <img style="width: 100%; height: 100%;" alt="logo" src="StaticFiles/search_icon.png">
+                </button>
+                <button class="navbar-bottom-buttons" style="background-image: url('StaticFiles/heart_icon.png');"></button>
+                <button class="navbar-bottom-buttons" style="background-image: url('StaticFiles/scale_icon.png');"></button>
+                <button class="navbar-bottom-buttons" style="background-image: url('StaticFiles/cart_icon.png');"></button>
+            </div>
+        </div>
+        <div class="navbar-lang" style="grid-area: 1 / 3 / 3 / 4;">
+            <a class="nav-lang" asp-area="" asp-controller="Home" asp-action="About">Eng</a>
+            <div class="navbar-lang-help-text">/</div>
+            <a class="nav-lang" asp-area="" asp-controller="Home" asp-action="About">Ukr</a>
+        </div>
+        <div class="navbar-auth" style="grid-area: 1 / 4 / 3 / 5;">
+            <a class="button-type-2" asp-area="" asp-controller="Authentication" asp-action="Register">Sign up</a>
+            <a class="button-type-1" asp-area="" asp-controller="Authentication" asp-action="Login">Log in</a>
         </div>
     </div>
 </header>
@@ -39,38 +60,38 @@
 
 @* <section class="divider"></section> *@
 
-<footer class="footer-dark">
-    <div class="container">
-        <div class="footer-wrapper">
-            <a href="#" class="footer-brand w-inline-block w-clearfix">
-                <h3 class="white-heading">TradeWave</h3>
-            </a>
+<footer class="footer-section">
+    <div class="container-size">
+        <div class="footer-panel">
             <div class="footer-content">
-                <div id="w-node-_67efb1ed-8059-4e57-7371-ad9557e7f911-4aaec852" class="footer-block">
+                <a href="#" class="brand-block">
+                    <h3 class="heading-brand">TradeWave</h3>
+                </a>
+                <div class="footer-info-block">
                     <div class="title-small">Company</div>
-                    <a href="#" class="footer-link">How it works</a>
-                    <a href="#" class="footer-link">Pricing</a>
-                    <a href="#" class="footer-link">Docs</a>
+                    <a href="#" class="footer-nav-link">How it works</a>
+                    <a href="#" class="footer-nav-link">Pricing</a>
+                    <a href="#" class="footer-nav-link">Docs</a>
                 </div>
-                <div id="w-node-_67efb1ed-8059-4e57-7371-ad9557e7f91a-4aaec852" class="footer-block">
+                <div class="footer-info-block">
                     <div class="title-small">Resources</div>
-                    <a href="#" class="footer-link">Blog post name list goes here</a>
-                    <a href="#" class="footer-link">Blog post name list goes here</a>
-                    <a href="#" class="footer-link">Blog post name list goes here</a>
-                    <a href="#" class="footer-link">See all resources &gt;</a>
+                    <a href="#" class="footer-nav-link">Blog post name list goes here</a>
+                    <a href="#" class="footer-nav-link">Blog post name list goes here</a>
+                    <a href="#" class="footer-nav-link">Blog post name list goes here</a>
+                    <a href="#" class="footer-nav-link">See all resources &gt;</a>
                 </div>
-                <div id="w-node-_67efb1ed-8059-4e57-7371-ad9557e7f925-4aaec852" class="footer-block">
+                <div class="footer-info-block">
                     <div class="title-small">About</div>
-                    <a href="#" class="footer-link">Terms &amp; Conditions</a>
-                    <a href="#" class="footer-link">Privacy policy</a>
+                    <a asp-controller="Home" asp-action="Terms" class="footer-nav-link">Terms &amp; Conditions</a>
+                    <a asp-controller="Home" asp-action="Privacy" class="footer-nav-link">Privacy policy</a>
                     <div class="footer-social-block">
-                        <a href="#" class="footer-social-link w-inline-block">
+                        <a href="#" class="footer-social-link">
                             <img src=""/>
                         </a>
-                        <a href="#" class="footer-social-link w-inline-block">
+                        <a href="#" class="footer-social-link">
                             <img src=""/>
                         </a>
-                        <a href="#" class="footer-social-link w-inline-block">
+                        <a href="#" class="footer-social-link">
                             <img src=""/>
                         </a>
                     </div>

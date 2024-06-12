@@ -25,7 +25,6 @@
     <ItemGroup>
       <AdditionalFiles Include="Areas\Manager\Views\ManagerHome\Index.cshtml" />
       <AdditionalFiles Include="Areas\Manager\Views\Sellers\Index.cshtml" />
-      <AdditionalFiles Include="Views\Authentication\Privacy.cshtml" />
     </ItemGroup>
 
     <ItemGroup>

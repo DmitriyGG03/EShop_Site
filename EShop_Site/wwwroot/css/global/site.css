@@ -1,0 +1,30 @@
+:root {
+    --white: #f5f7fa;
+    --lightBlue: #d9e0ed;
+    --blue: #293e66;
+    --darkBlue: #152b40;
+    --bt-blue: #9cbbcd;
+}
+
+.body-color {
+    background-color: var(--lightBlue)
+}
+
+.divider {
+    height: 20px;
+    background-color: var(--lightBlue);
+}
+
+.container-size {
+    width: 100%;
+    max-width: 1260px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container-main {
+    vertical-align: middle;
+    position: static;
+    background-size: cover;
+    background-color: var(--darkBlue);
+    min-height: 50vh;
+}
