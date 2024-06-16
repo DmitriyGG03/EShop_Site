@@ -1,3 +1,15 @@
-﻿@{
-    Layout = "_GlobalLayout";
+﻿@using SharedLibrary.Models.Enums
+@{
+    @if (User.IsInRole(RoleTag.Manager.ToString()))
+    {
+        Layout = "~/Areas/Manager/Views/Shared/_ManagerLayout.cshtml";
+    }
+    else if (User.IsInRole(RoleTag.Seller.ToString()))
+    {
+        Layout = "~/Areas/Seller/Views/Shared/_SellerLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Areas/Customer/Views/Shared/_CustomerLayout.cshtml";
+    }
 }

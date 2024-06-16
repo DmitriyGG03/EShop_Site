@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="~/css/main/header.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/uncategorized.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/global/buttons.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/global/profile.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/global/modal.css" asp-append-version="true"/>
     <link rel="icon" href="logo_icon.ico" type="image/x-icon">
     <base href="/"/>
 </head>
@@ -21,44 +23,13 @@
         <a class="brand-block" style="grid-area: 1 / 1 / 3 / 2;" href="#">
             <h2 class="heading-brand">TradeWave</h2>
         </a>
-        <div class="navbar-flex-line" style="grid-area: 1 / 2 / 2 / 3;">
-            <div class="navbar-flex-line-top">
-                <a class="nav-link-temp" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                <a class="nav-link-temp" asp-area="" asp-controller="Home" asp-action="About">Sellers</a>
-                <a class="nav-link-temp" asp-area="" asp-controller="Home" asp-action="About">Products</a>
-                <a class="nav-link-temp" asp-area="" asp-controller="Home" asp-action="About">Orders</a>
-                @await RenderSectionAsync("AdditionalMenuButtons")
-            </div>
-            <div class="header-divider"></div>
-        </div>
-        <div style="grid-area: 2 / 2 / 3 / 3;" class="navbar-flex-line">
-            <div class="navbar-flex-line-bottom">
-                <input class="navbar-input-field" placeholder="I want to find..."/>
-                <button class="navbar-find-button">
-                    <img style="width: 100%; height: 100%;" alt="logo" src="StaticFiles/search_icon.png">
-                </button>
-                <button class="navbar-bottom-buttons" style="background-image: url('StaticFiles/heart_icon.png');"></button>
-                <button class="navbar-bottom-buttons" style="background-image: url('StaticFiles/scale_icon.png');"></button>
-                <button class="navbar-bottom-buttons" style="background-image: url('StaticFiles/cart_icon.png');"></button>
-            </div>
-        </div>
-        <div class="navbar-lang" style="grid-area: 1 / 3 / 3 / 4;">
-            <a class="nav-lang" asp-area="" asp-controller="Home" asp-action="About">Eng</a>
-            <div class="navbar-lang-help-text">/</div>
-            <a class="nav-lang" asp-area="" asp-controller="Home" asp-action="About">Ukr</a>
-        </div>
-        <div class="navbar-auth" style="grid-area: 1 / 4 / 3 / 5;">
-            <a class="button-type-2" asp-area="" asp-controller="Authentication" asp-action="Register">Sign up</a>
-            <a class="button-type-1" asp-area="" asp-controller="Authentication" asp-action="Login">Log in</a>
-        </div>
+        @await RenderSectionAsync("Header")
     </div>
 </header>
 
 <section class="divider"></section>
 
 @RenderBody();
-
-@* <section class="divider"></section> *@
 
 <footer class="footer-section">
     <div class="container-size">
@@ -82,8 +53,8 @@
                 </div>
                 <div class="footer-info-block">
                     <div class="title-small">About</div>
-                    <a asp-controller="Home" asp-action="Terms" class="footer-nav-link">Terms &amp; Conditions</a>
-                    <a asp-controller="Home" asp-action="Privacy" class="footer-nav-link">Privacy policy</a>
+                    <a asp-area="" asp-controller="Home" asp-action="Terms" class="footer-nav-link">Terms &amp; Conditions</a>
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy" class="footer-nav-link">Privacy policy</a>
                     <div class="footer-social-block">
                         <a href="#" class="footer-social-link">
                             <img src=""/>

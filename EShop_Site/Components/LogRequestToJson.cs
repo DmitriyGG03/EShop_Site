@@ -13,10 +13,13 @@ public static class LogMachine
             File.Create(LogFileName);
         }
 
-        string logData = $"{DateTime.Now} - {message}\n";
+        using (StreamWriter file = new StreamWriter(LogFileName, true))
+        {
+            string logData = $"{DateTime.Now} - {message}";
 
-        string json = JsonConvert.SerializeObject(logData, Formatting.Indented);
-
-        await File.AppendAllTextAsync(LogFileName, json);
+            string json = JsonConvert.SerializeObject(logData);
+            
+            await file.WriteLineAsync(json);
+        }
     }
 }

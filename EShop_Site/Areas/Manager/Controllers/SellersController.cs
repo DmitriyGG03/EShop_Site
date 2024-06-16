@@ -1,7 +1,7 @@
 using EShop_Site.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EShop_Site.Areas.Manager.Controllers;
+namespace EShop_Site.Areas.Seller.Controllers;
 
 [Area("Manager")]
 public class SellersController : Controller

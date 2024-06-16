@@ -3,6 +3,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using EShop_Site.Components;
 using EShop_Site.Services.Abstract;
+using Newtonsoft.Json;
+using SharedLibrary.Responses;
 
 namespace EShop_Site.Services;
 
@@ -18,7 +20,7 @@ public class HttpClientService : IHttpClientService
 
     public async Task<HttpResponseMessage> SendRequestAsync(RestRequestForm requestForm)
     {
-        using (var client = _clientFactory.CreateClient("MyApiClient"))
+        using (var client = _clientFactory.CreateClient("TradeWaveApiClient"))
         {
             try
             {
@@ -47,21 +49,41 @@ public class HttpClientService : IHttpClientService
                         "Communication with the database server occurred, but an unsuccessful action code was received");
                     Console.WriteLine(
                         $"The query returned an error code: {response.StatusCode}. Message: {await response.Content.ReadAsStringAsync()}");
-                    return response;
+                    return new HttpResponseMessage(HttpStatusCode.BadGateway)
+                    {
+                        Content = new StringContent(
+                            JsonConvert.SerializeObject(new LambdaResponse(
+                                "An unexpected error occurred on the server. Please try again! " +
+                                "If the problem persists, please contact support.")))
+                    };
                 }
             }
-            catch (Exception ex) when (ex.Message.Contains("actively refused"))
+            catch (HttpRequestException httpEx)
             {
-                await LogMachine.LogRequestToJson(
-                    "The server is not responding");
+                await LogMachine.LogRequestToJson($"HTTP request error: {httpEx.Message}");
+                Console.WriteLine($"HTTP request error: {httpEx.Message}");
                 return new HttpResponseMessage(HttpStatusCode.BadGateway)
                 {
                     Content = new StringContent(
-                        "No connection could be made because the target machine actively refused it.")
+                        JsonConvert.SerializeObject(new LambdaResponse(
+                            "An unexpected error occurred while trying to access the server. Please try again! " +
+                            "If the problem persists, please contact support.")))
+                };
+            }
+            catch (TaskCanceledException taskEx)
+            {
+                await LogMachine.LogRequestToJson("Request was canceled (possibly due to timeout).");
+                Console.WriteLine("Request was canceled (possibly due to timeout).");
+                return new HttpResponseMessage(HttpStatusCode.BadGateway)
+                {
+                    Content = new StringContent(
+                        JsonConvert.SerializeObject(new LambdaResponse("The server's not responding")))
                 };
             }
             catch (Exception ex)
             {
+                await LogMachine.LogRequestToJson($"Unexpected error: {ex.Message}");
+                Console.WriteLine($"Unexpected error: {ex.Message}");
                 throw new Exception($"An unexpected error occurred: {ex.Message}");
             }
         }

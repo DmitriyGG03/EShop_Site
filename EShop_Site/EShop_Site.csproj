@@ -7,27 +7,27 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Areas\Authentication\Controllers" />
-      <Folder Include="Areas\Authentication\Views" />
-      <Folder Include="Areas\Customer\Controllers" />
-      <Folder Include="Areas\Customer\Views" />
-    </ItemGroup>
-
-    <ItemGroup>
       <_ContentIncludedByDefault Remove="Views\Products\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Manager\Shared\Error.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Manager\Shared\_Layout.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Manager\Shared\_LayoutCustomer.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Manager\Shared\_LayoutManager.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Manager\Shared\_ValidationScriptsPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Seller\Shared\Error.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Seller\Shared\_ManagerLayout.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Seller\Shared\_ValidationScriptsPartial.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
+      <AdditionalFiles Include="Areas\Customer\Views\Shared\Error.cshtml" />
+      <AdditionalFiles Include="Areas\Customer\Views\Shared\_ManagerLayout.cshtml" />
+      <AdditionalFiles Include="Areas\Customer\Views\Shared\_ValidationScriptsPartial.cshtml" />
       <AdditionalFiles Include="Areas\Manager\Views\ManagerHome\Index.cshtml" />
       <AdditionalFiles Include="Areas\Manager\Views\Sellers\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.6" />
     </ItemGroup>
 

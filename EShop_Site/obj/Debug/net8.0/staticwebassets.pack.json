@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\StaticFiles\\heart_icon.png"
     },
     {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\orders_icon.png",
+      "PackagePath": "staticwebassets\\StaticFiles\\orders_icon.png"
+    },
+    {
       "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\profile_icon.png",
       "PackagePath": "staticwebassets\\StaticFiles\\profile_icon.png"
     },
@@ -41,6 +45,14 @@
       "PackagePath": "staticwebassets\\css\\global\\headings.css"
     },
     {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\global\\modal.css",
+      "PackagePath": "staticwebassets\\css\\global\\modal.css"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\global\\profile.css",
+      "PackagePath": "staticwebassets\\css\\global\\profile.css"
+    },
+    {
       "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\global\\site.css",
       "PackagePath": "staticwebassets\\css\\global\\site.css"
     },
@@ -63,6 +75,14 @@
     {
       "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\uncategorized.css",
       "PackagePath": "staticwebassets\\css\\uncategorized.css"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\js\\modal.js",
+      "PackagePath": "staticwebassets\\js\\modal.js"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\js\\modalMessage.js",
+      "PackagePath": "staticwebassets\\js\\modalMessage.js"
     },
     {
       "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\js\\site.js",

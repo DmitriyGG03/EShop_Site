@@ -39,3 +39,13 @@ C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\obj\Debug\net8
 C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\bin\Debug\net8.0\SharedLibrary.dll
 C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\bin\Debug\net8.0\SharedLibrary.pdb
 C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\bin\Debug\net8.0\log.json
+C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\obj\Debug\net8.0\scopedcss\Areas\Customer\Views\Shared\_CustomerLayout.cshtml.rz.scp.css
+C:\Users\Dimchik\source\repos\RiderProjects\EShop_Site\EShop_Site\obj\Debug\net8.0\scopedcss\Areas\Seller\Views\Shared\_SellerLayout.cshtml.rz.scp.css

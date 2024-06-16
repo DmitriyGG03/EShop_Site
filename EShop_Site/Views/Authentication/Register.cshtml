@@ -1,59 +1,81 @@
-﻿@{
+﻿@model SharedLibrary.Requests.RegisterRequest
+
+@{
     ViewData["Title"] = "Register";
 }
 
-@section AdditionalMenuButtons {
-
-}
-
+<html lang="en">
 <head>
     <title>@ViewData["Title"] - TradeWave</title>
-    <style>
-            * {
-                color: #f5f7fa;            
-            }
-        </style>
+    <link rel="stylesheet" href="~/css/global/modal.css" asp-append-version="true"/>
 </head>
-
 <body>
 <main class="container-size container-main">
     <div class="login-container">
         <div class="login-box">
-            <h3 class="white-heading">Register</h3>
-            <form method="post">
-                <div class="input-group">
-                    <label for="username">Name</label>
-                    <input type="email" id="" name="username" required/>
+            <h3 class="white-heading">Create new account</h3>
+            <form asp-action="Register" asp-controller="Authentication" method="post">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name"/>
+                    <span asp-validation-for="Name"></span>
                 </div>
-                <div class="input-group">
-                    <label for="username">Surname</label>
-                    <input type="email" id="" name="username" required/>
+                <div class="form-group">
+                    <label asp-for="LastName"></label>
+                    <input asp-for="LastName"/>
+                    <span asp-validation-for="LastName"></span>
                 </div>
-                <div class="input-group">
-                    <label for="username">Patronymic</label>
-                    <input type="email" id="" name="username" required/>
-                </div>
-                
-                <div class="input-group">
-                    <label for="username">Phone number</label>
-                    <input type="number" id="" name="username" required/>
-                </div>
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="" name="email" required/>
+                <div class="form-group">
+                    <label asp-for="Patronymic"></label>
+                    <input asp-for="Patronymic"/>
+                    <span asp-validation-for="Patronymic"></span>
                 </div>
                 
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="" name="password" required/>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email"/>
+                    <span asp-validation-for="Email"></span>
                 </div>
-                <div class="input-group">
-                    <label for="password">Repeate password</label>
-                    <input type="password" id="" name="password" required/>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber"></label>
+                    <input asp-for="PhoneNumber"/>
+                    <span asp-validation-for="PhoneNumber"></span>
                 </div>
-                <a type="submit" class="button-type-2">Log in</a>
+                
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" type="password"/>
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PasswordConfirm"></label>
+                    <input asp-for="PasswordConfirm" type="password"/>
+                    <span asp-validation-for="PasswordConfirm"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" style="background-color: var(--window-blue);" class="button-type-1">Register</button>
+                </div>
             </form>
         </div>
     </div>
 </main>
 </body>
+
+<div id="errorModal" class="modal-section">
+    <div class="modal-content">
+        <span class="modal-close-cross">&times;</span>
+        <h2 class="white-heading">Error</h2>
+        <div id="errorMessages" class="modal-text">
+            @if (ViewData.ModelState[string.Empty]?.Errors.Count > 0)
+            {
+                @foreach (var error in ViewData.ModelState[string.Empty].Errors)
+                {
+                    <p>@error.ErrorMessage</p>
+                }
+            }
+        </div>
+        <button class="button-type-1 modal-close-btn">Ok</button>
+    </div>
+</div>
+
+<script defer src="~/js/modal.js"></script>

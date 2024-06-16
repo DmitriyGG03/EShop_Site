@@ -4,10 +4,11 @@
     ViewData["Title"] = "Login";
 }
 
-@section AdditionalMenuButtons {
-
-}
-
+<html lang="en">
+<head>
+    <title>@ViewData["Title"] - TradeWave</title>
+    <link rel="stylesheet" href="~/css/global/modal.css" asp-append-version="true"/>
+</head>
 <body>
 <main class="container-size container-main">
     <div class="login-container">
@@ -25,10 +26,32 @@
                     <span asp-validation-for="Password"></span>
                 </div>
                 <div class="form-group">
-                    <a type="submit" class="button-type-1">Login</a>
+                    <button type="submit" style="background-color: var(--window-blue);" class="button-type-1">Log in</button>
                 </div>
             </form>
         </div>
     </div>
 </main>
 </body>
+
+<div id="errorModal" class="modal-section">
+    <div class="modal-content">
+        <span class="modal-close-cross">&times;</span>
+        <h2 class="white-heading">Error</h2>
+        <div id="errorMessages" class="modal-text">
+            @if (ViewData.ModelState[string.Empty]?.Errors.Count > 0)
+            {
+                @foreach (var error in ViewData.ModelState[string.Empty].Errors)
+                {
+                    <p>@error.ErrorMessage</p>
+                }
+            }
+        </div>
+        <button class="button-type-1 modal-close-btn">Ok</button>
+    </div>
+</div>
+
+
+<script defer src="~/js/modal.js"></script>
+
+</html>

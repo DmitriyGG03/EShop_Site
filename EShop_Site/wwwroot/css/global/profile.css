@@ -1,0 +1,18 @@
+.profile-box {
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-end-box {
+    padding: 3em;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.profile-lable {
+    font-size: large;
+    color: var(--white);
+    font-family: 'Noto Sans Brahmi', sans-serif;
+    margin-bottom: 1em;
+}
