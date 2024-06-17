@@ -6,25 +6,31 @@
     --bt-blue: #9cbbcd;
 }
 
-.body-color {
+* {
+    font-family: 'Noto Sans Brahmi', sans-serif;
+    color: var(--white);
+}
+
+a, button {
+    text-decoration: none;
+    cursor: pointer;
+    --button-1-border: #9cbbcd;
+}
+
+body {
     background-color: var(--lightBlue)
 }
 
-.divider {
+.vertical-divider-body {
     height: 20px;
     background-color: var(--lightBlue);
 }
 
-.container-size {
+.container-main-page-part {
     width: 100%;
     max-width: 1260px;
     margin-left: auto;
     margin-right: auto;
-}
-.container-main {
-    vertical-align: middle;
-    position: static;
-    background-size: cover;
     background-color: var(--darkBlue);
-    min-height: 50vh;
+    min-height: 40vh;
 }

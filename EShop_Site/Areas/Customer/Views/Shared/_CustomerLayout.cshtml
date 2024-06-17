@@ -6,23 +6,21 @@
 <html lang="en">
 
 @section Header {
-    <div class="navbar-flex-line" style="grid-area: 1 / 2 / 2 / 3;">
-        <div class="navbar-flex-line-top">
-            <a class="nav-link-temp" asp-area="" asp-controller="Home" asp-action="About">About</a>
-            <a class="nav-link-temp" asp-area="" asp-controller="Home" asp-action="About">Cathalog</a>
+    <div class="header-flex-column-line" style="grid-area: 1 / 2 / 2 / 3;">
+        <div class="nav-links-container">
+            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
+            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">Cathalog</a>
         </div>
         <div class="header-divider"></div>
     </div>
-    <div style="grid-area: 2 / 2 / 3 / 3;" class="navbar-flex-line">
-        <div class="navbar-flex-line-bottom">
-            <input class="navbar-input-field" placeholder="I want to find..."/>
-            <button class="navbar-find-button">
-                <img style="width: 100%; height: 100%;" alt="logo" src="StaticFiles/search_icon.png">
+        <div class="header-grid-line" style="grid-area: 2 / 2 / 3 / 3;">
+            <input class="header-input-field" placeholder="I want to find..."/>
+            <button class="header-find-button">
+                <img style="width: 100%; height: 100%;" alt="find" src="StaticFiles/search_icon.png">
             </button>
-            <button class="navbar-bottom-buttons" style="background-image: url('StaticFiles/cart_icon.png');"></button>
+            <button class="header-image-button" style="background-image: url('StaticFiles/cart_icon.png');"></button>
         </div>
-    </div>
-    <div class="navbar-auth" style="grid-area: 1 / 3 / 3 / 4;">
+    <div class="container-center" style="grid-area: 1 / 3 / 3 / 4;">
         @if (!User.Identity.IsAuthenticated)
         {
             <a class="button-type-2" asp-area="" asp-controller="Authentication" asp-action="Register">Sign up</a>

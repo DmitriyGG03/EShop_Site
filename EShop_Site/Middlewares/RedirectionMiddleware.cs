@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using SharedLibrary.Models.Enums;
 
 namespace EShop_Site.Middlewares;
@@ -14,45 +15,53 @@ public class RedirectionMiddleware
     public async Task Invoke(HttpContext context)
     {
         var path = context.Request.Path.Value;
+        var user = context.User;
+        RoleTag userRole = RoleTag.Customer;
 
         if (context.User.Identity.IsAuthenticated)
         {
-            var user = context.User;
-
-            if (user.IsInRole(RoleTag.Manager.ToString()))
+            var roleClaim = user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+            if (roleClaim is not null)
             {
-                if (path.StartsWith("/seller", StringComparison.OrdinalIgnoreCase) ||
-                    path.StartsWith("/customer", StringComparison.OrdinalIgnoreCase) ||
-                    path.Equals("/"))
-                {
-                    context.Response.Redirect("/manage");
-                    return;
-                }
-            }
-
-            if (user.IsInRole(RoleTag.Seller.ToString()))
-            {
-                if (path.StartsWith("/manage", StringComparison.OrdinalIgnoreCase) ||
-                    path.StartsWith("/customer", StringComparison.OrdinalIgnoreCase) ||
-                    path.Equals("/"))
-                {
-                    context.Response.Redirect("/seller");
-                    return;
-                }
+                RoleTag.TryParse(roleClaim.Value, out userRole);
             }
         }
-        else if ((context.User.Identity.IsAuthenticated && context.User.IsInRole(RoleTag.Customer.ToString())) ||
-                 !context.User.Identity.IsAuthenticated)
+
+        if (path.Equals("/") || !IsPathCorrect(userRole, path))
         {
-            if (path.StartsWith("/manage", StringComparison.OrdinalIgnoreCase) ||
-                path.StartsWith("/seller", StringComparison.OrdinalIgnoreCase) ||
-                path.Equals("/"))
-            {
-                context.Response.Redirect("/customer");
-                return;
-            }
+            context.Response.Redirect($"/{userRole.ToString()}");
+            return;
         }
 
         await _next(context);
+    }
+
+    private bool IsPathCorrect(RoleTag? userRole, string path)
+    {
+        foreach (RoleTag role in Enum.GetValues(typeof(RoleTag)))
+        {
+            if (role.Equals(userRole)) continue;
+
+            if (ContainsSubstringAfterSlash(path, role.ToString().ToLower()))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private bool ContainsSubstringAfterSlash(string input, string substringToFind)
+    {
+        int indexOfSlash = input.IndexOf('/');
+
+        if (indexOfSlash == -1)
+        {
+            return false;
+        }
+
+        string partAfterSlash = input.Substring(indexOfSlash + 1);
+
+        return partAfterSlash.Contains(substringToFind);
     }
 }

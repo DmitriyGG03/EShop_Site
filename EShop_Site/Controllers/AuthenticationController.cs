@@ -88,7 +88,7 @@ public class AuthenticationController : Controller
 
         AddUserCookiesAsync(authResponse);
 
-        return RedirectToAction("Home", "ManagerHome", new { area = "Manager" });
+        return RedirectToAction("", "", new { area = "" });
     }
 
     private async void AddUserCookiesAsync(AuthenticationResponse authResponse)

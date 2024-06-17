@@ -1,73 +1,51 @@
-.brand-block {
+.container-center {
     display: flex;
     justify-content: center;
     text-align: center;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.heading-brand {
-    color: var(--white);
-    font-family: Noto Sans Brahmi, sans-serif;
-    display: inline-flex;
-    font-size: xx-large;
     align-self: center;
 }
 
-.nav-link-temp {
-    color: var(--white);
-    font-family: Noto Sans Brahmi, sans-serif;
+.nav-link {
     font-size: large;
     padding: 0.2em 0.5em;
     cursor: pointer;
-    text-decoration: none;
     align-self: center;
     margin-top: auto;
     margin-bottom: auto;
 }
 
-.nav-link-temp:hover,
-.nav-lang:hover {
+.nav-link:hover {
     color: var(--bt-blue);
 }
 
-.nav-link-temp:active,
-.nav-lang:active {
+.nav-link:active{
     color: var(--lightBlue);
 }
 
-.nav-link-temp:focus,
-.nav-lang:focus {
+.nav-link:focus {
     outline: 2px solid var(--bt-blue);
 }
 
-.nav-link-temp:visited,
-.nav-lang:visited {
+.nav-link:visited {
     color: var(--white);
-}
-
-.nav-lang {
-    display: inline-flex;
-    color: var(--white);
-    font-family: Noto Sans Brahmi, sans-serif;
-    font-size: large;
-    padding: 0.2em 0.5em;
-    cursor: pointer;
-    text-decoration: none;
-    align-self: center;
-    margin-top: auto;
-    margin-bottom: auto;
 }
 
 .button-type-1 {
-    align-self: center;
     font-size: x-large;
     color: var(--bt-blue);
-    font-family: Noto Sans Brahmi, sans-serif;
-    border: 4px outset #9cbbcd;
+    border: 4px outset var(--button-1-border);
+    align-self: center;
     padding: 4px 8px 4.5px;
-    cursor: pointer;
-    text-decoration: none;
+    background-color: var(--darkBlue);
+}
+
+.button-type-2 {
+    font-size: 20px;
+    color: var(--white);
+    border: 2px solid var(--white);
+    align-self: center;
+    padding: 0.25em;
+    background-color: var(--darkBlue);
 }
 
 .button-type-1:hover {
@@ -87,14 +65,3 @@
     background-color: var(--darkBlue);
 }
 
-.button-type-2 {
-    align-self: center;
-    font-size: 20px;
-    color: var(--white);
-    font-family: Noto Sans Brahmi, sans-serif;
-    border-style: solid;
-    border-width: 2px;
-    padding: 0.25em;
-    cursor: pointer;
-    text-decoration: none;
-}

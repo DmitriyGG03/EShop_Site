@@ -57,10 +57,10 @@ app.UseMiddleware<RedirectionMiddleware>();
 app.MapAreaControllerRoute(
     name: "manager_area",
     areaName: "manager",
-    pattern: "manage/{controller=ManagerHome}/{action=Home}/{id?}");
+    pattern: "manager/{controller=ManagerHome}/{action=Home}/{id?}");
 
 app.MapAreaControllerRoute(
-    name: "customer_area",
+    name: "seller_area",
     areaName: "seller",
     pattern: "seller/{controller=SellerHome}/{action=Home}/{id?}");
 

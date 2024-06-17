@@ -1,3 +1,9 @@
+.heading-2x-large-flex-center {
+    display: inline-flex;
+    font-size: xx-large;
+    align-self: center;
+}
+
 .title-small {
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -8,16 +14,16 @@
     color: var(--white);
 }
 
-.white-heading {
-    box-sizing: border-box;
+.heading-title {
     color: var(--white);
     text-align: center;
-    overflow-wrap: normal;
-    object-fit: fill;
     font-family: Noto Sans Brahmi, sans-serif;
     font-size: xx-large;
     display: flex;
-    bottom: 1em;
-    overflow: visible;
     justify-content: center;
+    align-items: center;
+}
+
+.simple-text-container {
+    padding: 1em 1.5em 1em 1.5em
 }

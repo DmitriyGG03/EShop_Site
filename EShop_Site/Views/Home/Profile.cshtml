@@ -2,9 +2,9 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model EShop_Site.Models.UserData
 
-<main class="container-size container-main">
+
     <div class="profile-box">
-        <h2 class="white-heading">Profile</h2>
+        <h2 class="heading-title">Profile</h2>
         <label class="profile-lable">Name: @(Model.Name ?? "No data")</label>
         <label class="profile-lable">Last name: @(Model.LastName ?? "No data")</label>
         @if (@Model.Patronymic is not null)
@@ -18,12 +18,12 @@
         <a class="button-type-1" style="background-color: var(--darkBlue); margin-right: 1em;">Edit</a>
         <a class="button-type-1" style="background-color: var(--darkBlue); align-self: flex-end;" asp-controller="Authentication" asp-action="Logout" asp-route-returnUrl="@Context.Request.Path">Log out</a>
     </div>
-</main>
+
 
 <div id="errorModal" class="modal-section">
     <div class="modal-content">
         <span class="modal-close-cross">&times;</span>
-        <h2 class="white-heading">Error</h2>
+        <h2 class="heading-title">Error</h2>
         <div id="errorMessages" class="modal-text">
             <p id="message-text">@Model.Message</p>
         </div>
