@@ -1,11 +1,7 @@
-using EShop_Site.Models;
-using Microsoft.AspNetCore.Authorization;
+using EShop_Site.Areas.Manager.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using SharedLibrary.Models.Enums;
-using SharedLibrary.Routes;
 
-namespace EShop_Site.Areas.Seller.Controllers;
+namespace EShop_Site.Areas.Customer.Controllers;
 
 [Area("Customer")]
 public class CustomerHomeController : Controller

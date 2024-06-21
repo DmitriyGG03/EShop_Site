@@ -1,0 +1,24 @@
+@using EShop_Site.Components
+@{
+    string message = MessageStorage.ConfirmMessage;
+    string link = MessageStorage.LinkMessage;
+}
+
+<div id="confirmModal" class="modal-section">
+    <div class="modal-content">
+        <span id="crossCloseConfirm" class="modal-close-cross">&times;</span>
+        <h2 class="heading-title">Confirmation</h2>
+        <div class="modal-text">
+            <p id="message-field">@message</p>
+        </div>
+        <div class="modal-buttons-container">
+            <button id="accept-btn" class="button-type-1 modal-close-btn">Accept</button>
+            <div style="width: 1em;"></div>
+            <button id="reject-btn" class="button-type-1 modal-close-btn">Reject</button>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="link" value="@link"/>
+
+<script defer src="~/js/modalOkCancel.js"></script>

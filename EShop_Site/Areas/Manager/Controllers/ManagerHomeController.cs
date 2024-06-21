@@ -1,11 +1,8 @@
-using EShop_Site.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using SharedLibrary.Models.Enums;
 using SharedLibrary.Routes;
 
-namespace EShop_Site.Areas.Seller.Controllers;
+namespace EShop_Site.Areas.Manager.Controllers;
 
 [Authorize(Policy = Policy.OnlyForManagers)]
 [Area("Manager")]

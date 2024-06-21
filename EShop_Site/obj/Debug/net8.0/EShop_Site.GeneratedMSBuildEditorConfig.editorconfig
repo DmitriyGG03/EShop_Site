@@ -24,28 +24,34 @@ build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcU2hhcmVk
 build_metadata.AdditionalFiles.CssScope = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Customer/Views/Shared/_ManagerLayout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = 
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Customer/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = 
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Manager/Views/ManagerHome/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = 
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Manager/Views/Sellers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = 
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlclxWaWV3c1xTZWxsZXJzXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Customer/Views/CustomerHome/Home.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcQ3VzdG9tZXJIb21lXEhvbWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Customer/Views/Order/CartView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcT3JkZXJcQ2FydFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Customer/Views/Order/OrdersView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcT3JkZXJcT3JkZXJzVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Customer/Views/Products/ProductsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcUHJvZHVjdHNcUHJvZHVjdHNMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Customer/Views/Products/ProductView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJcVmlld3NcUHJvZHVjdHNcUHJvZHVjdFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Customer/Views/_ViewImports.cshtml]
@@ -60,8 +66,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlclxWaWV3c1xNYW5hZ2VySG9tZVxIb21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Manager/Views/Products/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlclxWaWV3c1xQcm9kdWN0c1xJbmRleC5jc2h0bWw=
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Manager/Views/Orders/OrdersList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlclxWaWV3c1xPcmRlcnNcT3JkZXJzTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Manager/Views/Products/ProductsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlclxWaWV3c1xQcm9kdWN0c1xQcm9kdWN0c0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Manager/Views/Products/ProductView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlclxWaWV3c1xQcm9kdWN0c1xQcm9kdWN0Vmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Manager/Views/Sellers/SellersList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlclxWaWV3c1xTZWxsZXJzXFNlbGxlcnNMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Manager/Views/Sellers/SellerView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlclxWaWV3c1xTZWxsZXJzXFNlbGxlclZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Manager/Views/Shared/Error.cshtml]
@@ -78,6 +100,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Manager/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlclxWaWV3c1xfVmlld1N0YXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Seller/Views/Products/ProductsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXFByb2R1Y3RzXFByb2R1Y3RzTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Seller/Views/Products/ProductView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXFByb2R1Y3RzXFByb2R1Y3RWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Seller/Views/SellerHome/Home.cshtml]
@@ -108,16 +138,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/CreateEditProduct/EditProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3JlYXRlRWRpdFByb2R1Y3RcRWRpdFByb2R1Y3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/CreateEditSeller/EditSeller.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3JlYXRlRWRpdFNlbGxlclxFZGl0U2VsbGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/CreateEditUser/EditUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3JlYXRlRWRpdFVzZXJcRWRpdFVzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/Home/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/Home/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvci5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/Home/Home.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIb21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/Home/Privacy.cshtml]
@@ -134,6 +172,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/Shared/_ConfirmModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db25maXJtTW9kYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/Shared/_ErrorModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9FcnJvck1vZGFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/Shared/_InfoModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9JbmZvTW9kYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Views/Shared/_ValidationScriptsPartial.cshtml]

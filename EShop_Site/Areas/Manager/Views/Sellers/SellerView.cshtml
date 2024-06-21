@@ -1,0 +1,20 @@
+@model SharedLibrary.Requests.EditSellerRequest
+
+<div class="profile-box">
+    <h2 class="heading-title" style="width: 70%;">Seller</h2>
+    <label class="profile-lable">Company name: @(Model.CompanyName ?? "No data")</label>
+    <label class="profile-lable">Contact number: @(Model.ContactNumber ?? "No data")</label>
+    <label class="profile-lable">Email: @(Model.EmailAddress ?? "No data")</label>
+    <label class="profile-lable" style="white-space: normal; word-wrap: break-word;">Description: @(Model.CompanyDescription ?? "No data")</label>
+    @if (@Model.ImageUrl is not null)
+    {
+        <label class="profile-lable">Image url: @Model.ImageUrl</label>
+    }
+    @if (@Model.AdditionNumber is not null)
+    {
+        <label class="profile-lable">Addition number: @Model.AdditionNumber</label>
+    }
+    <div class="profile-end-box">
+        <a class="button-type-1" asp-area="Manager" asp-controller="Sellers" asp-action="SellersList">Return</a>
+    </div>
+</div>

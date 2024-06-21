@@ -20,10 +20,7 @@
 
     <ItemGroup>
       <AdditionalFiles Include="Areas\Customer\Views\Shared\Error.cshtml" />
-      <AdditionalFiles Include="Areas\Customer\Views\Shared\_ManagerLayout.cshtml" />
       <AdditionalFiles Include="Areas\Customer\Views\Shared\_ValidationScriptsPartial.cshtml" />
-      <AdditionalFiles Include="Areas\Manager\Views\ManagerHome\Index.cshtml" />
-      <AdditionalFiles Include="Areas\Manager\Views\Sellers\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>

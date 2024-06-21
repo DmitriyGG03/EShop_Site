@@ -1,15 +1,12 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using EShop_Site.Components;
-using EShop_Site.Helpers;
-using EShop_Site.Models;
 using EShop_Site.Services.Abstract;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SharedLibrary.Models.MainModels;
 using SharedLibrary.Requests;
 using SharedLibrary.Responses;
 using SharedLibrary.Routes;
@@ -41,7 +38,7 @@ public class AuthenticationController : Controller
         if (!ModelState.IsValid) return View();
 
         var response = await _httpClient.SendRequestAsync(new RestRequestForm(
-            ApiRoutes.Controllers.Authentication + ApiRoutes.Authentication.Login,
+            ApiRoutes.Controllers.AuthenticationContr + ApiRoutes.AuthenticationActions.LoginPath,
             HttpMethod.Post,
             jsonData: JsonConvert.SerializeObject(loginRequest)));
 
@@ -59,25 +56,24 @@ public class AuthenticationController : Controller
         if (!ModelState.IsValid) return View();
 
         var response = await _httpClient.SendRequestAsync(new RestRequestForm(
-            ApiRoutes.Controllers.Authentication + ApiRoutes.Authentication.Register,
+            ApiRoutes.Controllers.AuthenticationContr + ApiRoutes.AuthenticationActions.RegisterPath,
             HttpMethod.Post, jsonData: JsonConvert.SerializeObject(registerRequest)));
-
+        
         return await ResponseHandler(response);
     }
 
     private async Task<IActionResult> ResponseHandler(HttpResponseMessage response)
     {
+        var authResponse = await JsonHelper.GetTypeFromResponseAsync<LambdaResponse<string>>(response);
+        
         if (!response.IsSuccessStatusCode)
         {
-            var testAuthResponse = await JsonHelper.GetTypeFromResponseAsync<LambdaResponse>(response);
-
-            ModelState.AddModelError(string.Empty, testAuthResponse.Info
-                                                   ?? throw new Exception("Info is null"));
+            MessageStorage.ErrorMessage = authResponse.ErrorInfo ?? "";
 
             return View();
         }
 
-        var authResponse = await JsonHelper.GetTypeFromResponseAsync<AuthenticationResponse>(response);
+        if (authResponse.ResponseObject is null) throw new Exception("Response object is null");
 
         var userId = User.FindFirst("id")?.Value;
         var name = User.FindFirst("name")?.Value;
@@ -91,10 +87,10 @@ public class AuthenticationController : Controller
         return RedirectToAction("", "", new { area = "" });
     }
 
-    private async void AddUserCookiesAsync(AuthenticationResponse authResponse)
+    private async void AddUserCookiesAsync(LambdaResponse<string> authResponse)
     {
         var handler = new JwtSecurityTokenHandler();
-        var jsonToken = handler.ReadToken(authResponse.Token) as JwtSecurityToken ??
+        var jsonToken = handler.ReadToken(authResponse.ResponseObject) as JwtSecurityToken ??
                         throw new Exception("Invalid token!");
 
         var claims = new List<Claim>

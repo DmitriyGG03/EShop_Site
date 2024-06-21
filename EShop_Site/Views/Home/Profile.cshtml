@@ -1,37 +1,41 @@
-@using SharedLibrary.Models.Enums
 @using Microsoft.AspNetCore.Mvc.TagHelpers
-@model EShop_Site.Models.UserData
+@using EShop_Site.Components
+@model SharedLibrary.Requests.EditUserRequest
 
+@{
+    ViewData["Title"] = "User profile";
+}
 
-    <div class="profile-box">
-        <h2 class="heading-title">Profile</h2>
-        <label class="profile-lable">Name: @(Model.Name ?? "No data")</label>
-        <label class="profile-lable">Last name: @(Model.LastName ?? "No data")</label>
-        @if (@Model.Patronymic is not null)
-        {
-            <label class="profile-lable">Patronymic: @Model.Patronymic</label>
+<head>
+    <title>@ViewData["Title"] - TradeWave</title>
+</head>
+
+<body>
+<div class="profile-box">
+    <h2 class="heading-title">Profile</h2>
+    <label class="profile-lable">Name: @(Model.Name ?? "No data")</label>
+    <label class="profile-lable">Last name: @(Model.LastName ?? "No data")</label>
+    @if (@Model.Patronymic is not null)
+    {
+        <label class="profile-lable">Patronymic: @Model.Patronymic</label>
+    }
+    <label class="profile-lable">Email: @(Model.Email ?? "No data")</label>
+    <label class="profile-lable">PhoneNumber: @(Model.PhoneNumber ?? "No data")</label>
+</div>
+<div class="profile-end-box">
+    @if (@Model.Email is null)
+    {
+        <style>
+            .disabled-link {
+            pointer-events: none;
+            cursor: default;
+            color: grey;
+            border-color: grey;
         }
-        <label class="profile-lable">Email: @(Model.Email ?? "No data")</label>
-        <label class="profile-lable">PhoneNumber: @(Model.PhoneNumber ?? "No data")</label>
-    </div>
-    <div class="profile-end-box">
-        <a class="button-type-1" style="background-color: var(--darkBlue); margin-right: 1em;">Edit</a>
-        <a class="button-type-1" style="background-color: var(--darkBlue); align-self: flex-end;" asp-controller="Authentication" asp-action="Logout" asp-route-returnUrl="@Context.Request.Path">Log out</a>
-    </div>
-
-
-<div id="errorModal" class="modal-section">
-    <div class="modal-content">
-        <span class="modal-close-cross">&times;</span>
-        <h2 class="heading-title">Error</h2>
-        <div id="errorMessages" class="modal-text">
-            <p id="message-text">@Model.Message</p>
-        </div>
-        <button class="button-type-1 modal-close-btn">Ok</button>
-    </div>
+        </style>
+    }
+    <a id="edit-bt" class="button-type-1 disabled-link" style="background-color: var(--darkBlue); margin-right: 1em;" asp-controller="CreateEditUser" asp-action="EditUser">Edit</a>
+    <a class="button-type-1 modal-confirm-button" style="background-color: var(--darkBlue); align-self: flex-end;" @(MessageStorage.ConfirmMessage = "Are you sure you want to log out of your account?") @(MessageStorage.LinkMessage = "https://localhost:44383/Authentication/Logout")>Log out</a>
 </div>
 
-<!-- Скрытый элемент для передачи значения Message -->
-<input type="hidden" id="errorMessage" value="@Model.Message"/>
-
-<script defer src="~/js/modalMessage.js"></script>
+</body>

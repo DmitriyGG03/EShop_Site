@@ -6,6 +6,7 @@
 }
 
 .nav-link {
+    color: var(--white);
     font-size: large;
     padding: 0.2em 0.5em;
     cursor: pointer;

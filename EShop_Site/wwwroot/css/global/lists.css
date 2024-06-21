@@ -1,0 +1,56 @@
+.container-list {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    padding: 1em 2em;
+}
+
+.seller-info-grid-container {
+    background-color: var(--blue);
+    margin: 1em;
+    display: grid;
+    grid: 50px 50px 50px/150px 1fr 1fr 200px;
+}
+
+.info-container-button {
+    text-align: center;
+    background-color: var(--blue);
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+}
+
+.info-container-text {
+    font-size: large;
+    text-align: left;
+}
+
+.container-list-page {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    padding: 1em 2em;
+}
+
+.list-page-button {
+    width: 100%;
+    text-align: center;
+    font-size: x-large;
+    color: var(--bt-blue);
+    border: 4px outset var(--button-1-border);
+    align-self: center;
+    padding: 4px 8px 4.5px;
+    margin-bottom: 1em;
+    background-color: var(--darkBlue);
+}
+
+.list-page-button:hover {
+    background-color: var(--blue);
+    color: var(--white);
+    border: 4px outset var(--white);
+}
+
+.list-page-button:active {
+    background-color: var(--darkBlue);
+}

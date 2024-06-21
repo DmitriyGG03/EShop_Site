@@ -1,0 +1,20 @@
+@model SharedLibrary.Requests.EditProductRequest
+
+<div class="profile-box">
+    <h2 class="heading-title" style="width: 70%;">Product</h2>
+    <label class="profile-lable">Product name: @(Model.Name ?? "No data")</label>
+    <label class="profile-lable">Weight: @(Model.WeightInGrams)g</label>
+    <label class="profile-lable">Price: $@(Model.PricePerUnit)</label>
+    @if (Model.ImageUrl is not null && !String.IsNullOrEmpty(Model.ImageUrl))
+    {
+        <label class="profile-lable">Image url: @Model.ImageUrl</label>
+    }
+    @if (Model.InStock is not null)
+    {
+        <label class="profile-lable">InStock: @Model.InStock</label>
+    }
+    <label class="profile-lable" style="white-space: normal; word-wrap: break-word;">Description: @(Model.Description ?? "No data")</label>
+    <div class="profile-end-box">
+        <a class="button-type-1" asp-area="Customer" asp-controller="Products" asp-action="ProductsList">Return</a>
+    </div>
+</div>

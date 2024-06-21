@@ -1,11 +1,10 @@
 using EShop_Site.Components;
-using EShop_Site.Helpers;
-using EShop_Site.Models;
 using EShop_Site.Services.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SharedLibrary.Models.MainModels;
+using SharedLibrary.Models.DbModels.MainModels;
+using SharedLibrary.Requests;
 using SharedLibrary.Responses;
 using SharedLibrary.Routes;
 
@@ -39,11 +38,6 @@ public class HomeController : Controller
     {
         return View();
     }
-    
-    public IActionResult Home()
-    {
-        return View();
-    }
 
     [Authorize]
     public async Task<IActionResult> Profile()
@@ -51,27 +45,38 @@ public class HomeController : Controller
         var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "id")!.Value;
         
         var response = await _httpClientService.SendRequestAsync(
-            new RestRequestForm(ApiRoutes.Controllers.User + ApiRoutes.User.GetById, 
+            new RestRequestForm(ApiRoutes.Controllers.UserContr + ApiRoutes.UserActions.GetByIdPath, 
                 HttpMethod.Get, jsonData: JsonConvert.SerializeObject(userId)));
         
-        var errorResponse = await JsonHelper.GetTypeFromResponseAsync<LambdaResponse<User>>(response);
+        var userResponse = await JsonHelper.GetTypeFromResponseAsync<LambdaResponse<User>>(response);
         
         if (!response.IsSuccessStatusCode)
         {
-            return View(new UserData() {Message = errorResponse.Info});
+            MessageStorage.ErrorMessage = userResponse.ErrorInfo ?? "";
+            MessageStorage.InfoMessage = userResponse.Info ?? "";
+            return View(new EditUserRequest());
         }
 
-        User user = errorResponse.ResponseObject;
+        User user = userResponse.ResponseObject ?? throw new Exception("Received null user object!");
 
-        return View(new UserData()
+        var request = new EditUserRequest()
         {
+            UserId = user.UserId,
+
             Name = user.Name,
             LastName = user.LastName,
             Patronymic = user.Patronymic,
-            
+
             Email = user.Email,
             PhoneNumber = user.PhoneNumber,
-        });
+
+            RoleId = user.RoleId,
+            SellerId = user.SellerId,
+        };
+        
+        TempData["EditUserRequest"] = JsonConvert.SerializeObject(request);
+        
+        return View(request);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

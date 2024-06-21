@@ -1,0 +1,19 @@
+@using EShop_Site.Components
+@{
+    string message = MessageStorage.InfoMessage;
+}
+
+<div id="infoModal" class="modal-section">
+    <div class="modal-content">
+        <span id="crossCloseInfo" class="modal-close-cross">&times;</span>
+        <h2 class="heading-title">Info</h2>
+        <div class="modal-text">
+            <p>@message</p>
+        </div>
+        <button id="ok-close-info" class="button-type-1 modal-close-btn">Ok</button>
+    </div>
+</div>
+
+<input type="hidden" id="infoMessage" value="@message"/>
+
+<script defer src="~/js/modalOkInfo.js"></script>

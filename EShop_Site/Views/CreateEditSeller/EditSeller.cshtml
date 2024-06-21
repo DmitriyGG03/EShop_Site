@@ -1,0 +1,69 @@
+@using SharedLibrary.Requests
+@model EditSellerRequest
+
+@{
+    ViewData["Title"] = "Edit seller";
+}
+
+<html lang="en">
+<head>
+    <title>@ViewData["Title"] - TradeWave</title>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h3 class="heading-title">
+                @if (!Model.SellerId.Equals(Guid.Empty))
+                {
+                    @("Edit seller");
+                }
+                else
+                {
+                    @("Create seller");
+                }
+            </h3>
+            <form asp-action="EditSeller" asp-controller="CreateEditSeller" method="post">
+                <div class="form-group">
+                    <label asp-for="CompanyName"></label>
+                    <input asp-for="CompanyName"/>
+                    <span asp-validation-for="CompanyName"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ContactNumber"></label>
+                    <input asp-for="ContactNumber"/>
+                    <span asp-validation-for="ContactNumber"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmailAddress"></label>
+                    <input asp-for="EmailAddress"/>
+                    <span asp-validation-for="EmailAddress"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="CompanyDescription"></label>
+                    <input asp-for="CompanyDescription"/>
+                    <span asp-validation-for="CompanyDescription"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageUrl"></label>
+                    <input asp-for="ImageUrl"/>
+                    <span asp-validation-for="ImageUrl"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="AdditionNumber"></label>
+                    <input asp-for="AdditionNumber"/>
+                    <span asp-validation-for="AdditionNumber"></span>
+                </div>
+                <input type="hidden" asp-for="SellerId" />
+                <div class="form-group" style="flex-direction: row; align-items: center; justify-content: space-around;">
+                    <button type="submit" style="background-color: var(--window-blue);" class="button-type-1">Confirm</button>
+                    <button type="reset" style="background-color: var(--window-blue);" class="button-type-1" onclick="location.href='@Url.Action("SellersList", "Sellers", new { area = "Manager" })'">Dismiss</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+@await Html.PartialAsync("_ErrorModal")

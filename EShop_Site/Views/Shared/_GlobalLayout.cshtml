@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="~/css/global/buttons.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/global/profile.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/global/modal.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/global/lists.css" asp-append-version="true"/>
     <link rel="icon" href="logo_icon.ico" type="image/x-icon">
     <base href="/"/>
 </head>
@@ -80,7 +81,6 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
-<script src="pgia/lib/pgia.js"></script>
 
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -88,4 +88,9 @@
 <script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
+
+@await Html.PartialAsync("_ErrorModal")
+@await Html.PartialAsync("_InfoModal")
+@await Html.PartialAsync("_ConfirmModal")
+
 </html>

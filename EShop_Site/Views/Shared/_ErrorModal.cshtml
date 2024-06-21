@@ -1,0 +1,19 @@
+@using EShop_Site.Components
+@{
+    string message = MessageStorage.ErrorMessage;
+}
+
+<div id="errorModal" class="modal-section">
+    <div class="modal-content">
+        <span id="crossClose" class="modal-close-cross">&times;</span>
+        <h2 class="heading-title">Error</h2>
+        <div class="modal-text">
+            <p>@message</p>
+        </div>
+        <button id="ok-close" class="button-type-1 modal-close-btn">Ok</button>
+    </div>
+</div>
+
+<input type="hidden" id="errorMessage" value="@message"/>
+
+<script defer src="~/js/modalOk.js"></script>

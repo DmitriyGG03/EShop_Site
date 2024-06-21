@@ -1,7 +1,7 @@
 using System.Data;
 using Newtonsoft.Json;
 
-namespace EShop_Site.Helpers;
+namespace EShop_Site.Components;
 
 public static class JsonHelper
 {

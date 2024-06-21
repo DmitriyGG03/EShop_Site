@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\StaticFiles\\CompanyLogo.png"
     },
     {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\apple_logo.png",
+      "PackagePath": "staticwebassets\\StaticFiles\\apple_logo.png"
+    },
+    {
       "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\cart_icon.png",
       "PackagePath": "staticwebassets\\StaticFiles\\cart_icon.png"
     },
@@ -17,12 +21,28 @@
       "PackagePath": "staticwebassets\\StaticFiles\\heart_icon.png"
     },
     {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\iPhone_15.png",
+      "PackagePath": "staticwebassets\\StaticFiles\\iPhone_15.png"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\noname_phone.png",
+      "PackagePath": "staticwebassets\\StaticFiles\\noname_phone.png"
+    },
+    {
       "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\orders_icon.png",
       "PackagePath": "staticwebassets\\StaticFiles\\orders_icon.png"
     },
     {
       "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\profile_icon.png",
       "PackagePath": "staticwebassets\\StaticFiles\\profile_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\samsung_A55.png",
+      "PackagePath": "staticwebassets\\StaticFiles\\samsung_A55.png"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\samsung_logo.png",
+      "PackagePath": "staticwebassets\\StaticFiles\\samsung_logo.png"
     },
     {
       "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\StaticFiles\\scale_icon.png",
@@ -43,6 +63,10 @@
     {
       "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\global\\headings.css",
       "PackagePath": "staticwebassets\\css\\global\\headings.css"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\global\\lists.css",
+      "PackagePath": "staticwebassets\\css\\global\\lists.css"
     },
     {
       "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\css\\global\\modal.css",
@@ -77,12 +101,28 @@
       "PackagePath": "staticwebassets\\css\\uncategorized.css"
     },
     {
-      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\js\\modal.js",
-      "PackagePath": "staticwebassets\\js\\modal.js"
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\js\\CustomerSearchBox.js",
+      "PackagePath": "staticwebassets\\js\\CustomerSearchBox.js"
     },
     {
-      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\js\\modalMessage.js",
-      "PackagePath": "staticwebassets\\js\\modalMessage.js"
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\js\\SellerSearchBox.js",
+      "PackagePath": "staticwebassets\\js\\SellerSearchBox.js"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\js\\listConfirm.js",
+      "PackagePath": "staticwebassets\\js\\listConfirm.js"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\js\\modalOk.js",
+      "PackagePath": "staticwebassets\\js\\modalOk.js"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\js\\modalOkCancel.js",
+      "PackagePath": "staticwebassets\\js\\modalOkCancel.js"
+    },
+    {
+      "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\js\\modalOkInfo.js",
+      "PackagePath": "staticwebassets\\js\\modalOkInfo.js"
     },
     {
       "Id": "C:\\Users\\Dimchik\\source\\repos\\RiderProjects\\EShop_Site\\EShop_Site\\wwwroot\\js\\site.js",

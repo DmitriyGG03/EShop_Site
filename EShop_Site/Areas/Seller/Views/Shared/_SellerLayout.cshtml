@@ -8,13 +8,13 @@
 @section Header {
     <div style="grid-area: 1 / 2 / 3 / 3;" class="header-flex-column-line">
         <div class="header-grid-line" style="grid: auto/6fr 45px 4fr">
-            <input class="header-input-field" style="margin-left: 1em; height: 100%; max-height: 35px;" placeholder="I want to find..."/>
-            <button class="header-find-button" style="height: 100%; max-height: 35px;">
+            <input id="searchInput" class="header-input-field" style="margin-left: 1em; height: 100%; max-height: 35px;" placeholder="I want to find..."/>
+            <button class="header-find-button" style="height: 100%; max-height: 35px;" onclick="redirectToSearch()">
                 <img style="width: 100%; height: 100%;" alt="logo" src="StaticFiles/search_icon.png">
             </button>
             <div class="nav-links-container">
                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">My Products</a>
+                <a class="nav-link" asp-area="Seller" asp-controller="Products" asp-action="ProductsList">My Products</a>
             </div>
         </div>
     </div>
@@ -38,4 +38,6 @@
 </head>
 
 @RenderBody()
+
+<script defer src="~/js/SellerSearchBox.js"></script>
 </html>
