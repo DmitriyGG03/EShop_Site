@@ -1,11 +1,11 @@
 using EShop_Site.Components;
+using EShop_Site.Extensions;
+using EShop_Site.Models;
 using EShop_Site.Services.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SharedLibrary.Models.DbModels.MainModels;
-using SharedLibrary.Requests;
-using SharedLibrary.Responses;
+using SharedLibrary.Models.ClientDtoModels.MainModels;
 using SharedLibrary.Routes;
 
 namespace EShop_Site.Areas.Seller.Controllers;
@@ -23,88 +23,62 @@ public class ProductsController : Controller
         _httpClient = httpClient;
     }
 
-    public async Task<IActionResult> ProductsListAsync(string? search = null)
+    public async Task<IActionResult> ProductsListViewAsync(string? search = null)
     {
         var response = await _httpClient.SendRequestAsync(
-            new RestRequestForm(ApiRoutes.Controllers.ProductContr + ApiRoutes.ProductActions.GetAllBySellerIdPath, HttpMethod.Get,
-                jsonData: JsonConvert.SerializeObject(
-                    _httpContext.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "id")!.Value)));
+            new RestRequestForm(
+                endPoint: ApiRoutes.Controllers.ProductContr + ApiRoutes.UniversalActions.GetAllAction,
+                requestMethod: HttpMethod.Get));
 
-        var serverResponse =
-            await JsonHelper
-                .GetTypeFromResponseAsync<LambdaResponse<List<Product>>>(response);
+        var requestResult = await ResponseHandler.HandleUniversalResponseAsync<List<ProductCDTO>>(response);
 
-        if (!response.IsSuccessStatusCode)
+        if (!requestResult.IsSuccessful)
         {
-            MessageStorage.ErrorMessage = serverResponse.ErrorInfo ?? "";
             return View();
         }
 
-        if (serverResponse.ResponseObject is null) throw new Exception("Response object is null");
-
-        List<EditProductRequest> products = new();
-        if (serverResponse.ResponseObject is not null && serverResponse.ResponseObject.Count > 0)
-        {
-            foreach (var product in serverResponse.ResponseObject)
-            {
-                products.Add(new EditProductRequest()
-                {
-                    ProductId = product.ProductId,
-
-                    Name = product.Name,
-                    WeightInGrams = product.WeightInGrams,
-                    PricePerUnit = product.PricePerUnit,
-
-                    Description = product.Description,
-                    ImageUrl = product.ImageUrl,
-                    InStock = product.InStock,
-
-                    SellerId = product.SellerId,
-                });
-            }
-        }
-
+        List<ProductForm> products = 
+            requestResult.Result?.Select(pr => pr.ToProductForm()).ToList() ?? new();
+        
         if (!String.IsNullOrEmpty(search))
         {
             products = products.Where(p => p.Name.Contains(search)).ToList();
         }
-
-        TempData["EditProductRequest"] = JsonConvert.SerializeObject(products);
 
         return View(products);
     }
 
     public async Task<IActionResult> ProductView(Guid id)
     {
-        var sellerDataJson = TempData["EditProductRequest"] as string;
-        if (sellerDataJson is null) throw new Exception("Edit data not found");
+        var response = await _httpClient.SendRequestAsync(
+            new RestRequestForm(
+                endPoint: ApiRoutes.Controllers.ProductContr + ApiRoutes.UniversalActions.GetByIdAction, 
+                requestMethod: HttpMethod.Get,
+                jsonData: JsonConvert.SerializeObject(id)));
 
-        var models = JsonConvert.DeserializeObject<List<EditProductRequest>>(sellerDataJson);
-        var model = models.FirstOrDefault(m => m.ProductId.Equals(id));
+        var requestResult = await ResponseHandler.HandleUniversalResponseAsync<ProductCDTO>(response);
 
-        return View(model);
+        if (!requestResult.IsSuccessful)
+        {
+            return View();
+        }
+
+        return View(requestResult.Result!.ToProductForm());
     }
 
-    public async Task<IActionResult> DeleteProduct(string? id = null)
+    public async Task<IActionResult> DeleteProductAsync(string? id = null)
     {
         if (id is null) throw new Exception("Id is null");
         Guid receivedId = new Guid(id);
 
         var response = await _httpClient.SendRequestAsync(
-            new RestRequestForm(ApiRoutes.Controllers.ProductContr + ApiRoutes.ProductActions.DeletePath, HttpMethod.Delete,
+            new RestRequestForm(
+                endPoint: ApiRoutes.Controllers.ProductContr + ApiRoutes.UniversalActions.DeleteAction, 
+                requestMethod: HttpMethod.Delete,
                 jsonData: JsonConvert.SerializeObject(receivedId)));
 
-        var serverResponse =
-            await JsonHelper
-                .GetTypeFromResponseAsync<LambdaResponse>(response);
+        var requestResult = await ResponseHandler.HandleUniversalResponseAndGetStatusAsync(response);
 
-        if (!response.IsSuccessStatusCode)
-        {
-            MessageStorage.ErrorMessage = serverResponse.ErrorInfo ?? "";
-            return RedirectToAction("ProductsList");
-        }
-
-        MessageStorage.InfoMessage = serverResponse.Info ?? "";
-        return RedirectToAction("ProductsList");
+        return RedirectToAction("ProductsListView");
     }
 }

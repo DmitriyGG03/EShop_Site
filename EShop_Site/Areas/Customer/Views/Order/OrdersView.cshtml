@@ -1,53 +1,35 @@
-@using Microsoft.AspNetCore.Mvc.TagHelpers
-@using SharedLibrary.Models.DbModels.MainModels
-@model List<Order>
+@using SharedLibrary.Models.ClientDtoModels.MainModels
+@using EShop_Site.Components
+@model List<OrderCDTO>
+
+@{
+    OrderCDTO order;
+}
 
 <div class="container-list-page">
     <h2 class="heading-title">Orders</h2>
     <div class="container-list">
-        <div class="seller-info-grid-container" style="grid: 50px 50px 50px/1fr 1fr;">
-            <div style="grid-area: 1 / 1 / 4 / 2">
-                <p class="info-container-text">Time: 14.06.2024 13:21</p>
-                <p class="info-container-text">Status: Processing</p>
-                <p class="info-container-text">TotalPrice: $500</p>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            @(order = Model[i])
+            <div class="seller-info-grid-container" style="grid: 50px 50px 50px/1fr 1fr;">
+                <div style="grid-area: 1 / 1 / 4 / 2">
+                    <p class="info-container-text">Time: @(DateTimeFormatter.GeneralFormat(order.OrderEventsCDto[0].EventTime))</p>
+                    <p class="info-container-text">Status: @(order.OrderEventsCDto[0].Stage)</p>
+                    <p class="info-container-text">TotalPrice: $@order.SummaryPrice</p>
+                </div>
+                <p class="info-container-text" style="grid-area: 1 / 2 / 4 / 3; white-space: normal; word-wrap: break-word;">
+                    Products:
+                    @foreach (OrderItemCDTO orderItem in order.OrderItemsCDto)
+                    {
+                        <br>
+                        @(orderItem.ProductCDto?.Name)
+                    }
+                </p>
             </div>
-            <p class="info-container-text" style="grid-area: 1 / 2 / 4 / 3; white-space: normal; word-wrap: break-word;">
-                Products:
-
-                <br>
-                Samsung Galaxy A55
-                
-            </p>
-        </div>
-
+        }
     </div>
-        <div class="profile-end-box">
-            <a class="button-type-1" asp-area="" asp-controller="" asp-action="">Return</a>
-        </div>
+    <div class="profile-end-box">
+        <a class="button-type-1" href="~/">Return</a>
+    </div>
 </div >
-
-@* <div class="container-list-page"> *@
-@*     <h2 class="heading-title">Orders</h2> *@
-@*     <div class="container-list"> *@
-@*         @if (Model is not null && Model.Count > 0) *@
-@*         { *@
-@*             @foreach (Order order in Model) *@
-@*             { *@
-@*                 <div class="seller-info-grid-container" style="grid: 50px 50px 50px/1fr 1fr;"> *@
-@*                     <div style="grid-area: 1 / 1 / 4 / 2"> *@
-@*                         <p class="info-container-text">Time: @order.OrderEvents[0].EventTime</p> *@
-@*                         <p class="info-container-text">Status: @(order.OrderEvents[0].Stage)g</p> *@
-@*                         <p class="info-container-text">TotalPrice: $@order.SummaryPrice</p> *@
-@*                     </div> *@
-@*                     <p class="info-container-text" style="grid-area: 1 / 2 / 4 / 3; white-space: normal; word-wrap: break-word;"> *@
-@*                         Products: *@
-@*                         @foreach (OrderItem orderItem in order.OrderItems) *@
-@*                         { *@
-@*                             <br> @(orderItem.Product?.Name) *@
-@*                         } *@
-@*                     </p> *@
-@*                 </div> *@
-@*             } *@
-@*         } *@
-@*     </div> *@
-@* </div > *@

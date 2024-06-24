@@ -1,54 +1,37 @@
-@using SharedLibrary.Models.DbModels.MainModels
+@using SharedLibrary.Models.ClientDtoModels.MainModels
 
-@model Order
+@model OrderCDTO
+
+@{
+    OrderItemCDTO orderItem;
+}
 
 <div class="container-list-page">
     <h2 class="heading-title">Cart</h2>
     <div class="container-list">
-
-        <div class="seller-info-grid-container">
-            <img style="grid-area: 1 / 1 / 4 / 2; width: 100%; height: 100%; object-fit: contain; padding: 10px" alt="logo" src="StaticFiles/samsung_A55.png"/>
-            <div style="grid-area: 1 / 2 / 4 / 3">
-                <p class="info-container-text">Name: Galaxy A55</p>
-                <p class="info-container-text">Count: 1</p>
-                <p class="info-container-text">Summary price: $500</p>
+        @for (int i = 0;  i < Model.OrderItemsCDto.Count; i++)
+        {
+            @(orderItem = Model.OrderItemsCDto[i])
+            <div class="seller-info-grid-container">
+                <img style="grid-area: 1 / 1 / 4 / 2; width: 100%; height: 100%; object-fit: contain; padding: 10px" alt="logo" src="@orderItem.ProductCDto?.ImageUrl"/>
+                <div style="grid-area: 1 / 2 / 4 / 3">
+                    <p class="info-container-text">Name: @orderItem.ProductCDto?.Name</p>
+                    <p class="info-container-text">Count: @(orderItem.Quantity)</p>
+                    <p class="info-container-text">Summary price: $@orderItem.SummaryItemPrice</p>
+                </div>
+                <p class="info-container-text" style="grid-area: 1 / 3 / 4 / 4; white-space: normal; word-wrap: break-word;">Description: <br> @orderItem.ProductCDto?.Description</p>
+                <a class="button-type-2 info-container-button modal-confirm-button" style="grid-area: 3 / 4 / 4 / 5;"
+                   asp data-confirm-message="Are you sure you want to delete this item from cart?"
+                   data-link="https://localhost:44383/customer/Orders/DeleteProductFromCart"
+                   data-product-id="@orderItem.OrderItemCDtoId">
+                    Delete
+                </a>
             </div>
-            <p class="info-container-text" style="grid-area: 1 / 3 / 4 / 4; white-space: normal; word-wrap: break-word;">Description: <br> Nice thing)</p>
-            <a class="button-type-2 info-container-button modal-confirm-button" style="grid-area: 3 / 4 / 4 / 5;" 
-               asp data-confirm-message="Are you sure you want to delete this item from cart?"
-               data-link="https://localhost:44383/customer/Orders/DeleteProductFromCart"
-               data-product-id="">Delete</a>
-        </div>
-        <script defer src="~/js/listConfirm.js"></script>
+            <script defer src="~/js/listConfirm.js"></script>
+        }
     </div>
     <div class="profile-end-box">
         <p class="heading-title" style="background-color: var(--darkBlue); margin-right: 1em; font-size: x-large;">Total price: $500</p>
         <a class="button-type-1 modal-confirm-button" style="background-color: var(--darkBlue); align-self: flex-end;">Buy</a>
     </div>
 </div>
-
-@* <div class="container-list-page"> *@
-@*     <h2 class="heading-title">Cart</h2> *@
-@*     <div class="container-list"> *@
-@*         @if (Model is not null && Model.OrderItems is not null && Model.OrderItems.Count > 0) *@
-@*         { *@
-@*             @foreach (OrderItem orderItem in Model.OrderItems) *@
-@*             { *@
-@*                 <div class="seller-info-grid-container"> *@
-@*                     <img style="grid-area: 1 / 1 / 4 / 2; width: 100%; height: 100%; object-fit: contain; padding: 10px" alt="logo" src="@orderItem.Product?.ImageUrl"/> *@
-@*                     <div style="grid-area: 1 / 2 / 4 / 3"> *@
-@*                         <p class="info-container-text">Name: @orderItem.Product?.Name</p> *@
-@*                         <p class="info-container-text">Count: @(orderItem.Quantity)</p> *@
-@*                         <p class="info-container-text">Summary price: $@orderItem.SummaryItemPrice</p> *@
-@*                     </div> *@
-@*                     <p class="info-container-text" style="grid-area: 1 / 3 / 4 / 4; white-space: normal; word-wrap: break-word;">Description: <br> @orderItem.Product?.Description</p> *@
-@*                     <a class="button-type-2 info-container-button modal-confirm-button" style="grid-area: 3 / 4 / 4 / 5;"  *@
-@*                        asp data-confirm-message="Are you sure you want to delete this item from cart?" *@
-@*                        data-link="https://localhost:44383/customer/Orders/DeleteProductFromCart" *@
-@*                        data-product-id="@orderItem.OrderItemId">Delete</a> *@
-@*                 </div> *@
-@*                 <script defer src="~/js/listConfirm.js"></script> *@
-@*             } *@
-@*         } *@
-@*     </div> *@
-@* </div> *@

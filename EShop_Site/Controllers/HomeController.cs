@@ -1,11 +1,12 @@
 using EShop_Site.Components;
+using EShop_Site.Extensions;
+using EShop_Site.Helpers;
+using EShop_Site.Models;
 using EShop_Site.Services.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SharedLibrary.Models.DbModels.MainModels;
-using SharedLibrary.Requests;
-using SharedLibrary.Responses;
+using SharedLibrary.Models.ClientDtoModels.MainModels;
 using SharedLibrary.Routes;
 
 namespace EShop_Site.Controllers;
@@ -26,57 +27,46 @@ public class HomeController : Controller
 
     public IActionResult Privacy()
     {
+        _logger.LogInformation("Opening the privacy view");
         return View();
     }
 
     public IActionResult Terms()
     {
+        _logger.LogInformation("Opening the terms view");
         return View();
     }
 
     public IActionResult About()
     {
+        _logger.LogInformation("Opening the about view");
         return View();
     }
 
     [Authorize]
     public async Task<IActionResult> Profile()
     {
-        var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "id")!.Value;
-        
+        //Get current user info from bd
         var response = await _httpClientService.SendRequestAsync(
-            new RestRequestForm(ApiRoutes.Controllers.UserContr + ApiRoutes.UserActions.GetByIdPath, 
-                HttpMethod.Get, jsonData: JsonConvert.SerializeObject(userId)));
-        
-        var userResponse = await JsonHelper.GetTypeFromResponseAsync<LambdaResponse<User>>(response);
-        
-        if (!response.IsSuccessStatusCode)
+            new RestRequestForm(ApiRoutes.Controllers.UserContr + ApiRoutes.UniversalActions.GetByIdAction, 
+                HttpMethod.Get, jsonData: JsonConvert.SerializeObject(CookiesHelper.GetUserId(_httpContextAccessor))));
+
+        var handleResult = await ResponseHandler.HandleUniversalResponseAsync<UserCDTO>(response);
+
+        if (!handleResult.IsSuccessful)
         {
-            MessageStorage.ErrorMessage = userResponse.ErrorInfo ?? "";
-            MessageStorage.InfoMessage = userResponse.Info ?? "";
-            return View(new EditUserRequest());
+            _logger.LogWarning("Error receiving user data for profile display");
+            return View(new UserForm());
         }
 
-        User user = userResponse.ResponseObject ?? throw new Exception("Received null user object!");
+        var userDto = handleResult.Result;
 
-        var request = new EditUserRequest()
-        {
-            UserId = user.UserId,
-
-            Name = user.Name,
-            LastName = user.LastName,
-            Patronymic = user.Patronymic,
-
-            Email = user.Email,
-            PhoneNumber = user.PhoneNumber,
-
-            RoleId = user.RoleId,
-            SellerId = user.SellerId,
-        };
+        //Set user info to form
+        var userForm = userDto.ToUserForm();
         
-        TempData["EditUserRequest"] = JsonConvert.SerializeObject(request);
+        _logger.LogInformation("Successful receiving user data for profile display");
         
-        return View(request);
+        return View(userForm);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

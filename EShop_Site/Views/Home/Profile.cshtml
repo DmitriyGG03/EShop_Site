@@ -1,9 +1,11 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using EShop_Site.Components
-@model SharedLibrary.Requests.EditUserRequest
+@using EShop_Site.Models
+@model UserForm
 
 @{
     ViewData["Title"] = "User profile";
+    var currentUrl = Context.Request.Path + Context.Request.QueryString;
 }
 
 <head>
@@ -34,8 +36,10 @@
         }
         </style>
     }
-    <a id="edit-bt" class="button-type-1 disabled-link" style="background-color: var(--darkBlue); margin-right: 1em;" asp-controller="CreateEditUser" asp-action="EditUser">Edit</a>
-    <a class="button-type-1 modal-confirm-button" style="background-color: var(--darkBlue); align-self: flex-end;" @(MessageStorage.ConfirmMessage = "Are you sure you want to log out of your account?") @(MessageStorage.LinkMessage = "https://localhost:44383/Authentication/Logout")>Log out</a>
+    <a id="edit-bt" class="button-type-1 disabled-link" style="background-color: var(--darkBlue); margin-right: 1em;" asp-controller="EditForms" asp-action="EditUser" asp-route-userForm="@Model" asp-route-returnUrl="@currentUrl">Edit</a>
+    <a class="button-type-1 modal-confirm-button" style="background-color: var(--darkBlue); align-self: flex-end;" 
+       @(MessageStorage.ConfirmMessage = "Are you sure you want to log out of your account?") 
+       @(MessageStorage.LinkMessage = "https://localhost:44383/Authentication/Logout")>Log out</a>
 </div>
 
 </body>

@@ -1,10 +1,10 @@
 using EShop_Site.Components;
+using EShop_Site.Helpers;
 using EShop_Site.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SharedLibrary.Models.DbModels.MainModels;
+using SharedLibrary.Models.ClientDtoModels.MainModels;
 using SharedLibrary.Requests;
-using SharedLibrary.Responses;
 using SharedLibrary.Routes;
 
 namespace EShop_Site.Areas.Customer.Controllers;
@@ -21,89 +21,77 @@ public class OrderController : Controller
         _httpClient = httpClient;
     }
 
-    public async Task<IActionResult> AddProductToCartAsync(Guid id)
+    /// <param name="id">Is a product id; just "id" because i use general JS script.</param>
+    public async Task<IActionResult> AddProductToCartAsync(Guid id) 
     {
         var response = await _httpClient.SendRequestAsync(
-            new RestRequestForm(ApiRoutes.Controllers.OrderContr + ApiRoutes.OrderActions.AddProductPath, HttpMethod.Post,
-                jsonData: JsonConvert.SerializeObject(new ProductCartRequest(id,
-                    new Guid(_httpContext.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "id")!.Value)))));
+            new RestRequestForm(
+                endPoint: ApiRoutes.Controllers.OrderContr + ApiRoutes.OrderActions.AddProductToCartOrderAction, 
+                requestMethod: HttpMethod.Post,
+                jsonData: JsonConvert.SerializeObject(new ProductCartRequest(id, CookiesHelper.GetUserId(_httpContext)))));
 
-        var serverResponse =
-            await JsonHelper
-                .GetTypeFromResponseAsync<LambdaResponse>(response);
+        var requestResult = await ResponseHandler.HandleUniversalResponseAndGetStatusAsync(response);
 
-        if (!response.IsSuccessStatusCode)
+        if (!requestResult)
         {
-            MessageStorage.ErrorMessage = serverResponse.ErrorInfo ?? "";
             return LocalRedirect($"~/customer/Products/ProductsList");
         }
-
-        MessageStorage.InfoMessage = serverResponse.Info ?? "";
+        
         return LocalRedirect($"~/customer/Products/ProductsList");
     }
 
+    /// <param name="id">Is a product id; just "id" because i use general JS script.</param>
     public async Task<IActionResult> DeleteProductFromCartAsync(Guid id)
     {
         var response = await _httpClient.SendRequestAsync(
-            new RestRequestForm(ApiRoutes.Controllers.OrderContr + ApiRoutes.OrderActions.DeleteProductPath, HttpMethod.Delete,
-                jsonData: JsonConvert.SerializeObject(new ProductCartRequest(id,
-                    new Guid(_httpContext.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "id")!.Value)))));
+            new RestRequestForm(
+                endPoint: ApiRoutes.Controllers.OrderContr + ApiRoutes.OrderActions.DeleteProductFromCartOrderAction, 
+                requestMethod: HttpMethod.Delete,
+                jsonData: JsonConvert.SerializeObject(new ProductCartRequest(id, CookiesHelper.GetUserId(_httpContext)))));
 
-        var serverResponse =
-            await JsonHelper
-                .GetTypeFromResponseAsync<LambdaResponse>(response);
+        var requestResult = await ResponseHandler.HandleUniversalResponseAndGetStatusAsync(response);
 
-        if (!response.IsSuccessStatusCode)
+        if (!requestResult)
         {
-            MessageStorage.ErrorMessage = serverResponse.ErrorInfo ?? "";
             return LocalRedirect($"~/customer/Products/ProductsList");
         }
-
-        MessageStorage.InfoMessage = serverResponse.Info ?? "";
+        
         return LocalRedirect($"~/customer/Products/ProductsList");
     }
 
-    public async Task<IActionResult> CartView()
+    public async Task<IActionResult> CartViewAsync()
     {
         var response = await _httpClient.SendRequestAsync(
-            new RestRequestForm(ApiRoutes.Controllers.OrderContr + ApiRoutes.OrderActions.GetCartPath, HttpMethod.Get,
-                jsonData: JsonConvert.SerializeObject(
-                    new Guid(_httpContext.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "id")!.Value))));
+            new RestRequestForm(
+                endPoint: ApiRoutes.Controllers.OrderContr + ApiRoutes.OrderActions.GetCartOrderAction, 
+                requestMethod: HttpMethod.Get,
+                jsonData: JsonConvert.SerializeObject(CookiesHelper.GetUserId(_httpContext))));
 
-        var serverResponse =
-            await JsonHelper
-                .GetTypeFromResponseAsync<LambdaResponse<Order>>(response);
+        var requestResult = await ResponseHandler.HandleUniversalResponseAsync<OrderCDTO>(response);
 
-        if (!response.IsSuccessStatusCode)
+        if (!requestResult.IsSuccessful)
         {
-            MessageStorage.ErrorMessage = serverResponse.ErrorInfo ?? "";
             return View();
         }
 
-        if (serverResponse.ResponseObject is null) throw new Exception("Response object is null");
-
-        return View(serverResponse.ResponseObject);
+        return View(requestResult.Result);
     }
 
-    public async Task<IActionResult> OrdersView()
+    public async Task<IActionResult> OrdersViewAsync()
     {
         var response = await _httpClient.SendRequestAsync(
-            new RestRequestForm(ApiRoutes.Controllers.OrderContr + ApiRoutes.OrderActions.GetOrdersPath, HttpMethod.Get,
-                jsonData: JsonConvert.SerializeObject(new Guid(
-                    _httpContext.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "id")!.Value))));
+            new RestRequestForm(
+                endPoint: ApiRoutes.Controllers.OrderContr + ApiRoutes.OrderActions.GetAllOrdersNotCartAction, 
+                requestMethod: HttpMethod.Get,
+                jsonData: JsonConvert.SerializeObject(CookiesHelper.GetUserId(_httpContext))));
 
-        var serverResponse =
-            await JsonHelper
-                .GetTypeFromResponseAsync<LambdaResponse<List<Order>>>(response);
+        var requestResult = await ResponseHandler.HandleUniversalResponseAsync<List<OrderCDTO>>(response);
 
-        if (!response.IsSuccessStatusCode)
+        if (!requestResult.IsSuccessful)
         {
-            MessageStorage.ErrorMessage = serverResponse.ErrorInfo ?? "";
             return View();
         }
 
-        if (serverResponse.ResponseObject is null) throw new Exception("Response object is null");
-
-        return View(serverResponse.ResponseObject);
+        return View(requestResult.Result);
     }
 }

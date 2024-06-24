@@ -1,10 +1,12 @@
 using EShop_Site.Components;
+using EShop_Site.Extensions;
+using EShop_Site.Helpers;
+using EShop_Site.Models;
 using EShop_Site.Services.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SharedLibrary.Requests;
-using SharedLibrary.Responses;
+using SharedLibrary.Models.ClientDtoModels.MainModels;
 using SharedLibrary.Routes;
 
 namespace EShop_Site.Areas.Manager.Controllers;
@@ -22,79 +24,57 @@ public class SellersController : Controller
         _logger = logger;
     }
 
-    public async Task<IActionResult> SellersListAsync()
+    public async Task<IActionResult> SellersListViewAsync()
     {
         var response = await _httpClient.SendRequestAsync(
-            new RestRequestForm(ApiRoutes.Controllers.SellerContr + ApiRoutes.SellerActions.GetAllPath, HttpMethod.Get));
+            new RestRequestForm(
+                endPoint: ApiRoutes.Controllers.SellerContr + ApiRoutes.UniversalActions.GetAllAction, 
+                requestMethod: HttpMethod.Get));
 
-        var serverResponse =
-            await JsonHelper
-                .GetTypeFromResponseAsync<LambdaResponse<List<SharedLibrary.Models.DbModels.MainModels.Seller>>>(response);
+        var requestResult = await ResponseHandler.HandleUniversalResponseAsync<List<SellerCDTO>>(response);
 
-        if (!response.IsSuccessStatusCode)
+        if (!requestResult.IsSuccessful)
         {
-            MessageStorage.ErrorMessage = serverResponse.ErrorInfo ?? "";
             return View();
         }
 
-        if (serverResponse.ResponseObject is null) throw new Exception("Response object is null");
-
-        List<EditSellerRequest> sellers = new();
-        if (serverResponse.ResponseObject is not null && serverResponse.ResponseObject.Count > 0)
-        {
-            foreach (var seller in serverResponse.ResponseObject)
-            {
-                sellers.Add(new EditSellerRequest()
-                {
-                    SellerId = seller.SellerId,
-
-                    CompanyName = seller.CompanyName,
-                    ContactNumber = seller.ContactNumber,
-                    EmailAddress = seller.EmailAddress,
-
-                    CompanyDescription = seller.CompanyDescription,
-                    ImageUrl = seller.ImageUrl,
-                    AdditionNumber = seller.AdditionNumber,
-                });
-            }
-        }
-        
-        TempData["EditSellerRequest"] = JsonConvert.SerializeObject(sellers);
+        List<SellerForm> sellers = 
+            requestResult.Result?.Select(pr => pr.ToSellerForm()).ToList() ?? new();
 
         return View(sellers);
     }
 
-    public async Task<IActionResult> SellerView(Guid id)
+    public async Task<IActionResult> SellerViewAsync(Guid id)
     {
-        var sellerDataJson = TempData["EditSellerRequest"] as string;
-        if (sellerDataJson is null) throw new Exception("Edit data not found");
+        var response = await _httpClient.SendRequestAsync(
+            new RestRequestForm(
+                endPoint: ApiRoutes.Controllers.SellerContr + ApiRoutes.UniversalActions.GetByIdAction, 
+                requestMethod: HttpMethod.Get,
+                jsonData: JsonConvert.SerializeObject(id)));
 
-        var models = JsonConvert.DeserializeObject<List<EditSellerRequest>>(sellerDataJson);
-        var model = models.FirstOrDefault(m => m.SellerId.Equals(id));
+        var requestResult = await ResponseHandler.HandleUniversalResponseAsync<SellerCDTO>(response);
 
-        return View(model);
+        if (!requestResult.IsSuccessful)
+        {
+            return View();
+        }
+
+        return View(requestResult.Result!.ToSellerForm());
     }
 
-    public async Task<IActionResult> DeleteSeller(string? id = null)
+    public async Task<IActionResult> DeleteSellerAsync(string? id = null)
     {
         if (id is null) throw new Exception("Id is null");
         Guid receivedId = new Guid(id);
 
         var response = await _httpClient.SendRequestAsync(
-            new RestRequestForm(ApiRoutes.Controllers.SellerContr + ApiRoutes.SellerActions.DeletePath, HttpMethod.Delete,
+            new RestRequestForm(
+                endPoint: ApiRoutes.Controllers.SellerContr + ApiRoutes.UniversalActions.DeleteAction, 
+                requestMethod: HttpMethod.Delete,
                 jsonData: JsonConvert.SerializeObject(receivedId)));
 
-        var serverResponse =
-            await JsonHelper
-                .GetTypeFromResponseAsync<LambdaResponse>(response);
+        var requestResult = await ResponseHandler.HandleUniversalResponseAndGetStatusAsync(response);
 
-        if (!response.IsSuccessStatusCode)
-        {
-            MessageStorage.ErrorMessage = serverResponse.ErrorInfo ?? "";
-            return RedirectToAction("SellersList");
-        }
-
-        MessageStorage.InfoMessage = serverResponse.Info ?? "";
-        return RedirectToAction("SellersList");
+        return RedirectToAction("SellersListView");
     }
 }

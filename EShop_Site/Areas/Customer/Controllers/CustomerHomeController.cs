@@ -15,7 +15,7 @@ public class CustomerHomeController : Controller
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public IActionResult Home()
+    public async Task<IActionResult> Home()
     {
         return View();
     }

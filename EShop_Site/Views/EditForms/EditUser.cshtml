@@ -1,19 +1,28 @@
 @using SharedLibrary.Requests
-@model EditUserRequest
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model EShop_Site.Models.UserForm
 
 @{
-    ViewData["Title"] = "Edit user";
+    string title;
+    @if (!Model.SellerId.Equals(Guid.Empty))
+    {
+        @(title = "Edit user")
+    }
+    else
+    {
+        @(title = "Create user")
+    }
 }
 
 <html lang="en">
 <head>
-    <title>@ViewData["Title"] - TradeWave</title>
+    <title>title - TradeWave</title>
 </head>
 <body>
     <div class="login-container">
         <div class="login-box">
-            <h3 class="heading-title">Edit user</h3>
-            <form asp-action="EditUser" asp-controller="CreateEditUser" method="post">
+            <h3 class="heading-title">@title</h3>
+            <form asp-action="EditUser" asp-controller="EditForms" method="post">
                 <div class="form-group">
                     <label asp-for="Name"></label>
                     <input asp-for="Name"/>

@@ -1,4 +1,4 @@
-@model SharedLibrary.Requests.EditSellerRequest
+@model SellerForm
 
 <div class="profile-box">
     <h2 class="heading-title" style="width: 70%;">Seller</h2>
@@ -15,6 +15,6 @@
         <label class="profile-lable">Addition number: @Model.AdditionNumber</label>
     }
     <div class="profile-end-box">
-        <a class="button-type-1" asp-area="Manager" asp-controller="Sellers" asp-action="SellersList">Return</a>
+        <a class="button-type-1" asp-area="Manager" asp-controller="Sellers" asp-action="SellersListView">Return</a>
     </div>
 </div>

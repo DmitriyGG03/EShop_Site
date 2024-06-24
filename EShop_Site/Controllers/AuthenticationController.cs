@@ -27,81 +27,62 @@ public class AuthenticationController : Controller
         _httpClient = httpClientService;
     }
 
-    public async Task<IActionResult> LoginAsync()
-    {
-        return View();
-    }
-
     [HttpPost]
-    public async Task<IActionResult> LoginAsync(LoginRequest loginRequest)
+    public async Task<IActionResult> LoginAsync(LoginRequest? loginRequest = null)
     {
-        if (!ModelState.IsValid) return View();
+        if (!ModelState.IsValid) return View(loginRequest);
 
         var response = await _httpClient.SendRequestAsync(new RestRequestForm(
-            ApiRoutes.Controllers.AuthenticationContr + ApiRoutes.AuthenticationActions.LoginPath,
+            ApiRoutes.Controllers.AuthenticationContr + ApiRoutes.AuthenticationActions.LoginAction,
             HttpMethod.Post,
             jsonData: JsonConvert.SerializeObject(loginRequest)));
 
-        return await ResponseHandler(response);
-    }
+        var loginResult = await Components.ResponseHandler.HandleUniversalResponseAsync<string>(response);
 
-    public async Task<IActionResult> RegisterAsync()
-    {
-        return View();
+        if (!loginResult.IsSuccessful) return View(loginRequest);
+        
+        CookiesAuthorizationAsync(loginResult.Result);
+
+        return Redirect("~/");
     }
 
     [HttpPost]
-    public async Task<IActionResult> RegisterAsync(RegisterRequest registerRequest)
+    public async Task<IActionResult> RegisterAsync(RegisterRequest? registerRequest = null)
     {
-        if (!ModelState.IsValid) return View();
+        if (!ModelState.IsValid) return View(registerRequest);
 
         var response = await _httpClient.SendRequestAsync(new RestRequestForm(
-            ApiRoutes.Controllers.AuthenticationContr + ApiRoutes.AuthenticationActions.RegisterPath,
+            ApiRoutes.Controllers.AuthenticationContr + ApiRoutes.AuthenticationActions.RegisterAction,
             HttpMethod.Post, jsonData: JsonConvert.SerializeObject(registerRequest)));
         
-        return await ResponseHandler(response);
-    }
+        var registerResult = await Components.ResponseHandler.HandleUniversalResponseAsync<string>(response);
 
-    private async Task<IActionResult> ResponseHandler(HttpResponseMessage response)
-    {
-        var authResponse = await JsonHelper.GetTypeFromResponseAsync<LambdaResponse<string>>(response);
+        if (!registerResult.IsSuccessful) return View(registerRequest);
         
-        if (!response.IsSuccessStatusCode)
-        {
-            MessageStorage.ErrorMessage = authResponse.ErrorInfo ?? "";
+        CookiesAuthorizationAsync(registerResult.Result);
 
-            return View();
-        }
-
-        if (authResponse.ResponseObject is null) throw new Exception("Response object is null");
-
-        var userId = User.FindFirst("id")?.Value;
-        var name = User.FindFirst("name")?.Value;
-        var lastName = User.FindFirst("lastName")?.Value;
-        var email = User.FindFirst("email")?.Value;
-        var phoneNumber = User.FindFirst("phoneNumber")?.Value;
-        var role = User.FindFirst("role")?.Value;
-
-        AddUserCookiesAsync(authResponse);
-
-        return RedirectToAction("", "", new { area = "" });
+        return Redirect("~/");
     }
 
-    private async void AddUserCookiesAsync(LambdaResponse<string> authResponse)
+    private async void CookiesAuthorizationAsync(string token)
     {
         var handler = new JwtSecurityTokenHandler();
-        var jsonToken = handler.ReadToken(authResponse.ResponseObject) as JwtSecurityToken ??
+        var jsonToken = handler.ReadToken(token) as JwtSecurityToken ??
                         throw new Exception("Invalid token!");
 
         var claims = new List<Claim>
         {
-            new Claim("id", jsonToken.Claims.First(claim => claim.Type == "id").Value),
+            new Claim("userId", jsonToken.Claims.First(claim => claim.Type == "userId").Value),
             new Claim("name", jsonToken.Claims.First(claim => claim.Type == "name").Value),
             new Claim("lastName", jsonToken.Claims.First(claim => claim.Type == "lastName").Value),
-            new Claim(ClaimsIdentity.DefaultNameClaimType, jsonToken.Claims.First(claim => claim.Type == "email").Value),
-            new Claim("phoneNumber", jsonToken.Claims.First(claim => claim.Type == "phoneNumber").Value),
             new Claim(ClaimsIdentity.DefaultRoleClaimType, jsonToken.Claims.First(claim => claim.Type == "role").Value),
         };
+        var sellerId = jsonToken.Claims.First(claim => claim.Type == "sellerId")?.Value;
+        if (sellerId is not null)
+        {
+            claims.Add(new Claim("sellerId", sellerId));
+        }
+        
         var claimsIdentity = new ClaimsIdentity(claims, "Cookies");
         var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
         

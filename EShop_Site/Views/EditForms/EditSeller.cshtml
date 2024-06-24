@@ -1,28 +1,31 @@
 @using SharedLibrary.Requests
-@model EditSellerRequest
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using EShop_Site.Helpers
+@model EShop_Site.Models.SellerForm
 
 @{
-    ViewData["Title"] = "Edit seller";
+    string title;
+    @if (!Model.SellerId.Equals(Guid.Empty))
+    {
+        @(title = "Edit seller")
+    }
+    else
+    {
+        @(title = "Create seller")
+    }
 }
 
 <html lang="en">
 <head>
-    <title>@ViewData["Title"] - TradeWave</title>
+    <title>title - TradeWave</title>
 </head>
 <body>
     <div class="login-container">
         <div class="login-box">
             <h3 class="heading-title">
-                @if (!Model.SellerId.Equals(Guid.Empty))
-                {
-                    @("Edit seller");
-                }
-                else
-                {
-                    @("Create seller");
-                }
+                @title
             </h3>
-            <form asp-action="EditSeller" asp-controller="CreateEditSeller" method="post">
+            <form asp-action="EditSeller" asp-controller="EditForms" method="post">
                 <div class="form-group">
                     <label asp-for="CompanyName"></label>
                     <input asp-for="CompanyName"/>
@@ -58,7 +61,7 @@
                 <input type="hidden" asp-for="SellerId" />
                 <div class="form-group" style="flex-direction: row; align-items: center; justify-content: space-around;">
                     <button type="submit" style="background-color: var(--window-blue);" class="button-type-1">Confirm</button>
-                    <button type="reset" style="background-color: var(--window-blue);" class="button-type-1" onclick="location.href='@Url.Action("SellersList", "Sellers", new { area = "Manager" })'">Dismiss</button>
+                    <button type="reset" style="background-color: var(--window-blue);" class="button-type-1" onclick="location.href='@Url.Action("SellersListView", "Sellers", new { area = CookiesHelper.GetUserRoleTag(Context).ToString() })'">Dismiss</button>
                 </div>
             </form>
         </div>

@@ -1,0 +1,75 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using EShop_Site.Helpers
+@model EShop_Site.Models.ProductForm
+
+@{
+    string title;
+    @if (!Model.SellerId.Equals(Guid.Empty))
+    {
+        @(title = "Edit product")
+    }
+    else
+    {
+        @(title = "Create product")
+    }
+}
+
+<html lang="en">
+<head>
+    <title>@title - TradeWave</title>
+</head>
+<body>
+<div class="login-container">
+    <div class="login-box">
+        <h3 class="heading-title">
+            @title
+        </h3>
+        <form asp-action="EditProduct" asp-controller="EditForms" method="post">
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name"/>
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeightInGrams"></label>
+                <input asp-for="WeightInGrams"/>
+                <span asp-validation-for="WeightInGrams"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PricePerUnit"></label>
+                <input asp-for="PricePerUnit"/>
+                <span asp-validation-for="PricePerUnit"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <input asp-for="Description"/>
+                <span asp-validation-for="Description"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl"></label>
+                <input asp-for="ImageUrl"/>
+                <span asp-validation-for="ImageUrl"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="InStock"></label>
+                <input asp-for="InStock"/>
+                <span asp-validation-for="InStock"></span>
+            </div>
+            <input type="hidden" asp-for="ProductId"/>
+            <input type="hidden" asp-for="SellerId"/>
+            <div class="form-group" style="flex-direction: row; align-items: center; justify-content: space-around;">
+                <button type="submit" style="background-color: var(--window-blue);" class="button-type-1">Confirm</button>
+                <button type="reset" style="background-color: var(--window-blue);" class="button-type-1"
+                        onclick="location.href='@Url.Action("ProductsListView", "Products", new { area = CookiesHelper.GetUserRoleTag(Context).ToString() })'">
+                    Dismiss
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+
+@await Html.PartialAsync("_ErrorModal")

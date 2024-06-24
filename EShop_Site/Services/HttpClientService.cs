@@ -58,7 +58,7 @@ public class HttpClientService : IHttpClientService
                         return new HttpResponseMessage(HttpStatusCode.BadGateway)
                         {
                             Content = new StringContent(
-                                JsonConvert.SerializeObject(new LambdaResponse(
+                                JsonConvert.SerializeObject(new UniversalResponse(
                                     "An unexpected error occurred on the server. Please try again! " +
                                     "If the problem persists, please contact support.")))
                         };
@@ -72,7 +72,7 @@ public class HttpClientService : IHttpClientService
                 return new HttpResponseMessage(HttpStatusCode.BadGateway)
                 {
                     Content = new StringContent(
-                        JsonConvert.SerializeObject(new LambdaResponse(
+                        JsonConvert.SerializeObject(new UniversalResponse(
                             "An unexpected error occurred while trying to access the server. Please try again! " +
                             "If the problem persists, please contact support.")))
                 };
@@ -84,7 +84,7 @@ public class HttpClientService : IHttpClientService
                 return new HttpResponseMessage(HttpStatusCode.BadGateway)
                 {
                     Content = new StringContent(
-                        JsonConvert.SerializeObject(new LambdaResponse("The server's not responding")))
+                        JsonConvert.SerializeObject(new UniversalResponse("The server's not responding")))
                 };
             }
             catch (Exception ex)
