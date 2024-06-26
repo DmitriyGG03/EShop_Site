@@ -49,7 +49,7 @@ public class HomeController : Controller
         //Get current user info from bd
         var response = await _httpClientService.SendRequestAsync(
             new RestRequestForm(ApiRoutes.Controllers.UserContr + ApiRoutes.UniversalActions.GetByIdAction, 
-                HttpMethod.Get, jsonData: JsonConvert.SerializeObject(CookiesHelper.GetUserId(_httpContextAccessor))));
+                HttpMethod.Get, jsonData: JsonConvert.SerializeObject(CookiesHelper.GetUserId(_httpContextAccessor.HttpContext))));
 
         var handleResult = await ResponseHandler.HandleUniversalResponseAsync<UserCDTO>(response);
 

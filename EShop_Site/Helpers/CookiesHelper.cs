@@ -1,32 +1,32 @@
+using System.Security.Claims;
 using SharedLibrary.Models.Enums;
 
 namespace EShop_Site.Helpers;
 
 public static class CookiesHelper
 {
-    public static Guid GetUserId(IHttpContextAccessor httpContextAccessor)
-    {
-        var context = httpContextAccessor.HttpContext ??
-                      throw new Exception("HttpContext is null, check user authorization!");
-
-        return GetUserId(context);
-    }
     public static Guid GetUserId(HttpContext httpContext)
     {
-        return new Guid(httpContext.User.Claims.FirstOrDefault(c => c.Type == "id")!.Value);
+        return new Guid(httpContext.User.Claims.FirstOrDefault(c => c.Type == Claims.UserId.ToString())!.Value);
     }
-
-    public static RoleTag GetUserRoleTag(IHttpContextAccessor httpContextAccessor)
+    
+    public static string GetUserName(HttpContext httpContext)
     {
-        var context = httpContextAccessor.HttpContext ??
-                      throw new Exception("HttpContext is null, check user authorization!");
-
-        return GetUserRoleTag(context);
+        return httpContext.User.Claims.FirstOrDefault(c => c.Type == Claims.Name.ToString())?.Value 
+               ?? throw new Exception("Name was not found in cookies!");
     }
+    
+    public static string GetUserLastName(HttpContext httpContext)
+    {
+        return httpContext.User.Claims.FirstOrDefault(c => c.Type == Claims.LastName.ToString())?.Value 
+               ?? throw new Exception("Lastname was not found in cookies!");
+    }
+    
     public static RoleTag GetUserRoleTag(HttpContext httpContext)
     {
-        var isParseSuccessful = RoleTag.TryParse(httpContext.User.Claims.FirstOrDefault(c => c.Type == "role")!.Value,
-            out RoleTag result);
+        var roleString = httpContext.User.Claims.FirstOrDefault(c => c.Type.Equals(ClaimsIdentity.DefaultRoleClaimType))!.Value;
+        
+        var isParseSuccessful = RoleTag.TryParse(roleString, out RoleTag result);
 
         if (!isParseSuccessful)
         {
@@ -36,16 +36,9 @@ public static class CookiesHelper
         return result;
     }
     
-    public static Guid? GetUserSellerId(IHttpContextAccessor httpContextAccessor)
-    {
-        var context = httpContextAccessor.HttpContext ??
-                      throw new Exception("HttpContext is null, check user authorization!");
-
-        return GetUserSellerId(context);
-    }
     public static Guid? GetUserSellerId(HttpContext httpContext)
     {
-        var isParseSuccessful = Guid.TryParse(httpContext.User.Claims.FirstOrDefault(c => c.Type == "sellerId")?.Value,
+        var isParseSuccessful = Guid.TryParse(httpContext.User.Claims.FirstOrDefault(c => c.Type == Claims.SellerId.ToString())?.Value,
             out Guid result);
 
         if (!isParseSuccessful)

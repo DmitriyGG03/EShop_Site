@@ -13,6 +13,7 @@ public class UserForm
     [StringLength(30, MinimumLength = 2, ErrorMessage = "The name must be a minimum of 6 and a maximum of 30 characters")]
     public string Name { get; set; }
 
+    [Display(Name = "Last name")]
     [Required(ErrorMessage = "Last name is required")]
     [DataType(DataType.Text)]
     [StringLength(30, MinimumLength = 2, ErrorMessage = "The last name must be a minimum of 6 and a maximum of 30 characters")]
@@ -27,6 +28,7 @@ public class UserForm
     [EmailAddress(ErrorMessage = "Invalid Email Address")]
     public string Email { get; set; }
 
+    [Display(Name = "Phone number")]
     [Required(ErrorMessage = "Phone number is required")]
     [Phone(ErrorMessage = "Invalid phone number")]
     public string PhoneNumber { get; set; }
@@ -42,6 +44,7 @@ public class UserForm
     public string? Password { get; set; }
 
     [MaybeNull]
+    [Display(Name = "Confirm password")]
     [StringLength(30, MinimumLength = 6,
         ErrorMessage = "The password must be a minimum of 6 and a maximum of 30 characters")]
     [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).+$",

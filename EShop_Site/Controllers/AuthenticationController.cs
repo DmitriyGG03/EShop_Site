@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using SharedLibrary.Models.Enums;
 using SharedLibrary.Requests;
 using SharedLibrary.Responses;
 using SharedLibrary.Routes;
@@ -26,9 +27,15 @@ public class AuthenticationController : Controller
         _logger = logger;
         _httpClient = httpClientService;
     }
-
+    
+    [HttpGet]
+    public async Task<IActionResult> LoginAsync()
+    {
+        return View();
+    }
+    
     [HttpPost]
-    public async Task<IActionResult> LoginAsync(LoginRequest? loginRequest = null)
+    public async Task<IActionResult> LoginAsync(LoginRequest loginRequest)
     {
         if (!ModelState.IsValid) return View(loginRequest);
 
@@ -46,8 +53,14 @@ public class AuthenticationController : Controller
         return Redirect("~/");
     }
 
+    [HttpGet]
+    public async Task<IActionResult> RegisterAsync()
+    {
+        return View();
+    }
+    
     [HttpPost]
-    public async Task<IActionResult> RegisterAsync(RegisterRequest? registerRequest = null)
+    public async Task<IActionResult> RegisterAsync(RegisterRequest registerRequest)
     {
         if (!ModelState.IsValid) return View(registerRequest);
 
@@ -64,6 +77,7 @@ public class AuthenticationController : Controller
         return Redirect("~/");
     }
 
+    [HttpPost]
     private async void CookiesAuthorizationAsync(string token)
     {
         var handler = new JwtSecurityTokenHandler();
@@ -72,15 +86,15 @@ public class AuthenticationController : Controller
 
         var claims = new List<Claim>
         {
-            new Claim("userId", jsonToken.Claims.First(claim => claim.Type == "userId").Value),
-            new Claim("name", jsonToken.Claims.First(claim => claim.Type == "name").Value),
-            new Claim("lastName", jsonToken.Claims.First(claim => claim.Type == "lastName").Value),
-            new Claim(ClaimsIdentity.DefaultRoleClaimType, jsonToken.Claims.First(claim => claim.Type == "role").Value),
+            new Claim(Claims.UserId.ToString(), jsonToken.Claims.First(claim => claim.Type == Claims.UserId.ToString()).Value),
+            new Claim(Claims.Name.ToString(), jsonToken.Claims.First(claim => claim.Type == Claims.Name.ToString()).Value),
+            new Claim(Claims.LastName.ToString(), jsonToken.Claims.First(claim => claim.Type == Claims.LastName.ToString()).Value),
+            new Claim(ClaimsIdentity.DefaultRoleClaimType, jsonToken.Claims.First(claim => claim.Type == Claims.Role.ToString()).Value),
         };
-        var sellerId = jsonToken.Claims.First(claim => claim.Type == "sellerId")?.Value;
+        var sellerId = jsonToken.Claims.FirstOrDefault(claim => claim.Type == Claims.SellerId.ToString())?.Value;
         if (sellerId is not null)
         {
-            claims.Add(new Claim("sellerId", sellerId));
+            claims.Add(new Claim(Claims.SellerId.ToString(), sellerId));
         }
         
         var claimsIdentity = new ClaimsIdentity(claims, "Cookies");

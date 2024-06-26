@@ -14,24 +14,28 @@ public class ProductForm
         ErrorMessage = "The name must be a minimum of 2 and a maximum of 30 characters")]
     public string Name { get; set; } = "";
     
+    [Display(Name = "Weight (g)")]
     [Required(ErrorMessage = "Weight is required")]
     [Range(1, Int32.MaxValue, ErrorMessage = "Weight must be greater than zero")]
     public int? WeightInGrams { get; set; }
     
+    [Display(Name = "Price")]
     [Required(ErrorMessage = "Price is required")]
     [Range(0.01, Double.MaxValue, ErrorMessage = "Price must be greater than zero")]
     public decimal? PricePerUnit { get; set; }
-
+    
     [Required(ErrorMessage = "Description is required")]
     [DataType(DataType.Text)]
     [StringLength(200, MinimumLength = 2, ErrorMessage = "The company description must be a minimum of 2 and a maximum of 200 characters")]
     public string Description { get; set; }  = "";
     
+    [Display(Name = "Image url")]
     [MaybeNull]
     [DataType(DataType.Text)]
     [StringLength(300, MinimumLength = 2, ErrorMessage = "The URL must be a minimum of 2 and a maximum of 300 characters")]
     public string? ImageUrl { get; set; }
     
+    [Display(Name = "In stock")]
     [MaybeNull]
     [Range(1, Double.MaxValue, ErrorMessage = "In stock number must be greater than zero")]
     public int? InStock { get; set; }

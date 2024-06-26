@@ -1,5 +1,6 @@
 using EShop_Site.Components;
 using EShop_Site.Extensions;
+using EShop_Site.Helpers;
 using EShop_Site.Models;
 using EShop_Site.Services.Abstract;
 using Microsoft.AspNetCore.Authorization;
@@ -37,9 +38,11 @@ public class ProductsController : Controller
             return View();
         }
 
-        List<ProductForm> products = 
-            requestResult.Result?.Select(pr => pr.ToProductForm()).ToList() ?? new();
-        
+        List<ProductForm> products =
+            requestResult.Result
+                ?.Where(p => p.SellerCDtoId.Equals(CookiesHelper.GetUserSellerId(_httpContext.HttpContext)))
+                .Select(pr => pr.ToProductForm()).ToList() ?? new();
+
         if (!String.IsNullOrEmpty(search))
         {
             products = products.Where(p => p.Name.Contains(search)).ToList();
@@ -52,7 +55,7 @@ public class ProductsController : Controller
     {
         var response = await _httpClient.SendRequestAsync(
             new RestRequestForm(
-                endPoint: ApiRoutes.Controllers.ProductContr + ApiRoutes.UniversalActions.GetByIdAction, 
+                endPoint: ApiRoutes.Controllers.ProductContr + ApiRoutes.UniversalActions.GetByIdAction,
                 requestMethod: HttpMethod.Get,
                 jsonData: JsonConvert.SerializeObject(id)));
 
@@ -73,7 +76,7 @@ public class ProductsController : Controller
 
         var response = await _httpClient.SendRequestAsync(
             new RestRequestForm(
-                endPoint: ApiRoutes.Controllers.ProductContr + ApiRoutes.UniversalActions.DeleteAction, 
+                endPoint: ApiRoutes.Controllers.ProductContr + ApiRoutes.UniversalActions.DeleteAction,
                 requestMethod: HttpMethod.Delete,
                 jsonData: JsonConvert.SerializeObject(receivedId)));
 

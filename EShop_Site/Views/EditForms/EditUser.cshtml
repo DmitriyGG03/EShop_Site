@@ -4,19 +4,19 @@
 
 @{
     string title;
-    @if (!Model.SellerId.Equals(Guid.Empty))
+    if (Model is not null && !Model.SellerId.Equals(Guid.Empty))
     {
-        @(title = "Edit user")
+        title = "Edit user";
     }
     else
     {
-        @(title = "Create user")
+        title = "Create user";
     }
 }
 
 <html lang="en">
 <head>
-    <title>title - TradeWave</title>
+    <title>@title - TradeWave</title>
 </head>
 <body>
     <div class="login-container">

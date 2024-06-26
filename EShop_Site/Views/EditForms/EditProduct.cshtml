@@ -1,16 +1,17 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using EShop_Site.Helpers
+@using SharedLibrary.Models.Enums
 @model EShop_Site.Models.ProductForm
 
 @{
     string title;
-    @if (!Model.SellerId.Equals(Guid.Empty))
+    if (Model is not null && !Model.SellerId.Equals(Guid.Empty))
     {
-        @(title = "Edit product")
+        title = "Edit product";
     }
     else
     {
-        @(title = "Create product")
+        title = "Create product";
     }
 }
 
@@ -51,12 +52,14 @@
                 <input asp-for="ImageUrl"/>
                 <span asp-validation-for="ImageUrl"></span>
             </div>
-
-            <div class="form-group">
-                <label asp-for="InStock"></label>
-                <input asp-for="InStock"/>
-                <span asp-validation-for="InStock"></span>
-            </div>
+            @if ((User.Identity?.IsAuthenticated ?? false) && CookiesHelper.GetUserRoleTag(Context) == RoleTag.Manager)
+            {
+                <div  class="form-group">
+                    <label asp-for="InStock"></label>
+                    <input asp-for="InStock"/>
+                    <span asp-validation-for="InStock"></span>
+                </div>
+            }
             <input type="hidden" asp-for="ProductId"/>
             <input type="hidden" asp-for="SellerId"/>
             <div class="form-group" style="flex-direction: row; align-items: center; justify-content: space-around;">

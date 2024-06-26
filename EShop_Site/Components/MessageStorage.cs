@@ -12,7 +12,13 @@ public static class MessageStorage
             _errorMessage = "";
             return temp;
         }
-        set => _errorMessage = value;
+        set
+        {
+            if (!value.Equals("") && _errorMessage.Equals(""))
+            {
+                _errorMessage = value;
+            }
+        } 
     }
     
     private static string _infoMessage = "";
@@ -25,7 +31,13 @@ public static class MessageStorage
             _infoMessage = "";
             return temp;
         }
-        set => _infoMessage = value;
+        set
+        {
+            if (!value.Equals("") && _infoMessage.Equals(""))
+            {
+                _infoMessage = value;
+            }
+        } 
     }
     
     private static string _confirmMessage = "";
@@ -38,7 +50,13 @@ public static class MessageStorage
             _confirmMessage = "";
             return temp;
         }
-        set => _confirmMessage = value;
+        set
+        {
+            if (!value.Equals("") && _confirmMessage.Equals(""))
+            {
+                _confirmMessage = value;
+            }
+        } 
     }
     
     private static string _linkMessage = "";
@@ -51,7 +69,13 @@ public static class MessageStorage
             _linkMessage = "";
             return temp;
         }
-        set => _linkMessage = value;
+        set
+        {
+            if (!value.Equals("") && _linkMessage.Equals(""))
+            {
+                _linkMessage = value;
+            }
+        } 
     }
     
     private static string _findMessage = "";
@@ -64,6 +88,12 @@ public static class MessageStorage
             _findMessage = "";
             return temp;
         }
-        set => _findMessage = value;
+        set
+        {
+            if (!value.Equals("") && _findMessage.Equals(""))
+            {
+                _findMessage = value;
+            }
+        } 
     }
 }

@@ -19,16 +19,7 @@
         </div>
     </div>
     <div class="container-center" style="grid-area: 1 / 3 / 3 / 4;">
-        @if (!User.Identity.IsAuthenticated)
-        {
-            <a class="button-type-2" asp-area="" asp-controller="Authentication" asp-action="Register">Sign up</a>
-            <div style="width: 1em;"></div>
-            <a class="button-type-1" asp-area="" asp-controller="Authentication" asp-action="Login">Log in</a>
-        }
-        else
-        {
-            <button class="navbar-log-panel-buttons" style="background-image: url('StaticFiles/profile_icon.png');" onclick="location.href='@Url.Action("Profile", "Home", new { area = "" })'"></button>
-        }
+        <button class="navbar-log-panel-buttons" style="background-image: url('StaticFiles/profile_icon.png');" onclick="location.href='@Url.Action("Profile", "Home", new { area = "" })'"></button>
     </div>
 }
 

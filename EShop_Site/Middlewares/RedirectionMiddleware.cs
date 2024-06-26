@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using EShop_Site.Helpers;
 using SharedLibrary.Models.Enums;
 
 namespace EShop_Site.Middlewares;
@@ -15,16 +16,11 @@ public class RedirectionMiddleware
     public async Task Invoke(HttpContext context)
     {
         var path = context.Request.Path.Value;
-        var user = context.User;
         RoleTag userRole = RoleTag.Customer;
 
-        if (context.User.Identity.IsAuthenticated)
+        if (context.User.Identity?.IsAuthenticated ?? false)
         {
-            var roleClaim = user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
-            if (roleClaim is not null)
-            {
-                RoleTag.TryParse(roleClaim.Value, out userRole);
-            }
+            userRole = CookiesHelper.GetUserRoleTag(context);
         }
 
         if (path.Equals("/") || !IsPathCorrect(userRole, path))

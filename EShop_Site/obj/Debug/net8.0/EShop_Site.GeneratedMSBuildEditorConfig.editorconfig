@@ -98,8 +98,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlclxWaWV3c1xfVmlld1N0YXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Seller/Views/Products/ProductsList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXFByb2R1Y3RzXFByb2R1Y3RzTGlzdC5jc2h0bWw=
+[C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Seller/Views/Products/ProductsListView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU2VsbGVyXFZpZXdzXFByb2R1Y3RzXFByb2R1Y3RzTGlzdFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Dimchik/source/repos/RiderProjects/EShop_Site/EShop_Site/Areas/Seller/Views/Products/ProductView.cshtml]

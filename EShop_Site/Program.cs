@@ -1,12 +1,31 @@
 using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
 using EShop_Site.Middlewares;
 using EShop_Site.Services;
 using EShop_Site.Services.Abstract;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Server.Kestrel.Https;
 using SharedLibrary.Models.Enums;
 using SharedLibrary.Routes;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Настройка Kestrel для поддержки mTLS
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ConfigureHttpsDefaults(httpsOptions =>
+    {
+        httpsOptions.ServerCertificate = new X509Certificate2("path/to/server.pfx", "password");
+
+        httpsOptions.ClientCertificateMode = ClientCertificateMode.RequireCertificate;
+        httpsOptions.ClientCertificateValidation = (cert, chain, errors) =>
+        {
+            // Добавьте вашу логику проверки сертификата клиента здесь
+            // Например, проверка цепочки сертификатов с использованием корневого сертификата (CA)
+            return chain.Build(cert);
+        };
+    });
+});
 
 builder.Services.AddHttpClient("TradeWaveApiClient");
 builder.Services.AddScoped<IHttpClientService, HttpClientService>();
